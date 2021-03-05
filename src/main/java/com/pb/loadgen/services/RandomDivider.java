@@ -21,7 +21,7 @@ public class RandomDivider implements  Runnable {
         while(keepRunning) {
             double number = random.nextDouble();
             double secondNumber = random.nextDouble();
-            System.out.println(Math.atan(Math.tan(secondNumber) * Math.tan(number)));
+            System.out.println(Math.atan(Math.pow(Math.tan(secondNumber), Math.tan(number))));
         }
     }
 }

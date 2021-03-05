@@ -25,7 +25,7 @@ public class SingleThreadManager implements Runnable{
 
     public synchronized void doStop() {
         try {
-            Thread.sleep(100L);
+            Thread.sleep(100L-percentage);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
