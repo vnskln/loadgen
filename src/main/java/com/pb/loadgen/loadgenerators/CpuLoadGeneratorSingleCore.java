@@ -1,26 +1,33 @@
 package com.pb.loadgen.loadgenerators;
 
 import com.pb.loadgen.services.RandomDivider;
-import com.pb.loadgen.services.SingleThreadManager;
 
 public class CpuLoadGeneratorSingleCore implements LoadGenerator {
 
-    private Thread thread;
-    SingleThreadManager manager;
+    int percentage;
+    RandomDivider randomDivider;
+    Thread worker;
 
-    public CpuLoadGeneratorSingleCore (int percentage) throws Exception {
-        RandomDivider randomDivider = new RandomDivider();
-        manager = new SingleThreadManager(randomDivider, percentage);
-        thread = new Thread(manager);
+    public CpuLoadGeneratorSingleCore (int percentage) {
+        this.percentage = percentage;
     }
 
     @Override
-    public void start() throws InterruptedException {
-        thread.start();
+    public void generate() {
+        System.out.println("Starting load generator");
+        randomDivider = new RandomDivider(percentage);
+        worker = new Thread(randomDivider);
+        worker.start();
+        System.out.println("Load generator started");
     }
 
     @Override
-    public void stop() {
-        manager.doStop();
+    public void generateStop() {
+        try {
+            Thread.sleep(100L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        randomDivider.doStop();
     }
 }

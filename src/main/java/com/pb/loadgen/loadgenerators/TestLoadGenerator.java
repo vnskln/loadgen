@@ -9,12 +9,12 @@ public class TestLoadGenerator implements LoadGenerator {
     Thread thread = new Thread(timeCheck);
 
     @Override
-    public void start() {
+    public void generate() {
         thread.start();
     }
 
     @Override
-    public void stop() {
+    public void generateStop() {
         try {
             Thread.sleep(1000L);
         } catch (InterruptedException e) {
