@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    LoadGenerator loadGenerator = new CpuLoadGeneratorSingleCore(30);
+    LoadGenerator loadGenerator = new CpuLoadGeneratorSingleCore(65);
 
     public HomeController() throws Exception {
     }
