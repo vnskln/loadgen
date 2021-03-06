@@ -14,16 +14,19 @@ public class RandomDivider implements  Runnable {
 
     @Override
     public void run() {
+        long startTime = System.currentTimeMillis();
         while(keepRunning) {
-            try {
-                Thread.sleep(100L - percentage);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (System.currentTimeMillis() - startTime >= percentage) {
+                try {
+                    Thread.sleep(100L - percentage);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startTime = System.currentTimeMillis();
             }
             double number = random.nextDouble();
             double secondNumber = random.nextDouble();
             double result = Math.atan(Math.pow(Math.tan(secondNumber), Math.tan(number)));
-            System.out.println(result);
         }
     }
 
