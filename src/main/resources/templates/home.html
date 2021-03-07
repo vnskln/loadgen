@@ -2,10 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Welcome</title>
+    <title>Load generator</title>
 </head>
-<body>
-<h1>Welcome</h1>
-<a th:href="@{/start}">start</a>
-</body>
+    <body>
+        <div>
+            <h1>Welcome to load generator engine</h1>
+        </div>
+        <div>
+            <form method="POST" th:action="@{/start}" th:object="${loadInput}">
+                <div>
+                    <input type="text" th:field="*{loadPercentage}"/>
+                </div>
+                <div>
+                    <select name="loadType">
+                        <option th:each="loadOpt : ${T(com.pb.loadgen.domains.LoadType).values()}"
+                                th:value="${loadOpt}" th:text="${loadOpt}"></option>
+                    </select>
+                </div>
+                <div>
+                    <button>Start</button>
+                </div>
+
+            </form>
+        </div>
+    </body>
 </html>

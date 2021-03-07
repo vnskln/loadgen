@@ -1,22 +1,15 @@
 package com.pb.loadgen.services;
 
-import java.util.Random;
+public class RandomDividerShifting extends RandomDivider{
 
-public class RandomDivider implements  Runnable {
-
-    protected volatile boolean keepRunning = true;
-    protected Random random = new Random();
-    protected int percentage;
-
-    public RandomDivider (int percentage) {
-        this.percentage = percentage;
+    public RandomDividerShifting (int percentage) {
+        super(percentage);
     }
-
-    public RandomDivider () {}
 
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
+        long shiftTime = startTime;
         while(keepRunning) {
             if (System.currentTimeMillis() - startTime >= percentage) {
                 try {
@@ -29,15 +22,12 @@ public class RandomDivider implements  Runnable {
             double number = random.nextDouble();
             double secondNumber = random.nextDouble();
             double result = Math.atan(Math.pow(Math.tan(secondNumber), Math.tan(number)));
+            if (System.currentTimeMillis() - shiftTime >= 1000) {
+                if (++percentage > 100)
+                    percentage -= 100;
+                shiftTime = System.currentTimeMillis();
+            }
         }
     }
 
-    public synchronized void doStop() {
-        try {
-            Thread.sleep(100L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.keepRunning = false;
-    }
 }
