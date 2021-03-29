@@ -31,10 +31,11 @@ pipeline {
                sh 'docker-compose up -d'
             }
         }
-        stage('Clean') {
+        stage('Stop&Clean') {
             steps {
                input 'Stop containers?'
                sh 'docker-compose rm -fsv'
+               sh 'docker volume rm $(docker volume ls -f dangling=true)'
             }
         }
     }
