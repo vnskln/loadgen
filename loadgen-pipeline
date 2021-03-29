@@ -35,7 +35,7 @@ pipeline {
             steps {
                input 'Stop containers?'
                sh 'docker-compose rm -fsv'
-               sh 'docker volume rm $(docker volume ls -f dangling=true)'
+               sh 'echo y | docker system prune'
             }
         }
     }
