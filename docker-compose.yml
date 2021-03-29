@@ -23,6 +23,14 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     depends_on:
       - loadGenerator
+  database:
+    image: postgres
+    env_file:
+      - database.env
+    volumes:
+      - /var/lib/postgresql/data/
+    depends_on:
+      - loadGenerator
   loadGenerator:
     image: loadgen-0.0.1
     container_name: loadGenerator
