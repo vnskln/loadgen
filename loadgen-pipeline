@@ -35,6 +35,7 @@ pipeline {
                input 'Stop containers?'
                sh 'docker-compose rm -fsv'
                sh 'echo y | docker system prune'
+               sh 'rm -rf /var/lib/jenkins/workspace/loadgen'
             }
         }
     }
