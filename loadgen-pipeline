@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Clear workspace') {
+            steps {
+                sh 'rm -rf /var/lib/jenkins/workspace/loadgen'
+            }
+        }
         stage('Git clone') {
             steps {
                 sh 'git clone https://github.com/vnskln/loadgen.git'
