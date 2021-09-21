@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git credentialsId: '2dff961e-b376-45ac-bc44-5b871ac16967',
-                    url: 'git@github.com:vnskln/loadgen.git',
+                git url: 'git@github.com:vnskln/loadgen.git',
                     branch: 'main'
             }
         }
