@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Git checkout') {
+        stage('Git clone') {
             steps {
-                git url: 'git@github.com:vnskln/loadgen.git',
-                    branch: 'main'
+                sh 'git clone https://github.com/vnskln/loadgen.git'
             }
         }
         stage('Clean') {
