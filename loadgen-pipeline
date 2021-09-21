@@ -1,10 +1,14 @@
 pipeline {
     agent any
-
     stages {
+    
+        stage('Fresh workspace') {
+            steps {
+                sh 'rm -rf /var/lib/jenkins/workspace/loadgen/loadgen'
+            }
+        }
         stage('Git clone') {
             steps {
-
                 sh 'git clone https://github.com/vnskln/loadgen.git'
             }
         }
@@ -35,7 +39,6 @@ pipeline {
                input 'Stop containers?'
                sh 'docker-compose rm -fsv'
                sh 'echo y | docker system prune'
-               sh 'rm -rf /var/lib/jenkins/workspace/loadgen'
             }
         }
     }
