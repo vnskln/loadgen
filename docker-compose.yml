@@ -1,4 +1,4 @@
-version: '3.2'
+version: '2.4'
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -38,6 +38,7 @@ services:
     container_name: loadGenerator
     ports:
       - 8000:8080
+    cpuset: "0"
     deploy:
       resources:
         limits:
