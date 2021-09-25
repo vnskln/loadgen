@@ -39,8 +39,5 @@ services:
     ports:
       - 8000:8080
     cpuset: "0"
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 300M
+    cpus: '1'
+    mem_limit: 300M
