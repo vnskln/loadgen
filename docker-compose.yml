@@ -8,7 +8,7 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
-      - ./prometheus/:/etc/prometheus/:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
   cadvisor:
     image: gcr.io/google-containers/cadvisor:latest
     container_name: cadvisor
