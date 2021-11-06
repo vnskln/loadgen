@@ -9,8 +9,6 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./prometheus:/etc/prometheus:ro
-    depends_on:
-      - cadvisor
   cadvisor:
     image: gcr.io/google-containers/cadvisor:latest
     container_name: cadvisor
@@ -21,8 +19,6 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    depends_on:
-      - loadGenerator
   database:
     image: postgres
     env_file:
@@ -31,8 +27,6 @@ services:
       - /var/lib/postgresql/data/
     ports:
       - 8002:5432
-    depends_on:
-      - loadGenerator
   loadGenerator:
     image: loadgen-0.0.1
     container_name: loadGenerator
