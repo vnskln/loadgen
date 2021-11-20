@@ -1,4 +1,0 @@
-docker build --tag loadgen-0.0.1 .
-docker run --publish 8000:8080 --cpus="1" --memory="300M" loadgen-0.0.1
-tests
-
