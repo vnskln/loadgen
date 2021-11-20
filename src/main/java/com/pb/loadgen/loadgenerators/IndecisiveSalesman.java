@@ -19,7 +19,8 @@ public class IndecisiveSalesman extends Salesman {
         while(keepRunning) {
             if (System.currentTimeMillis() - startTime >= 3*currentPercentage) {
                 try {
-                    Thread.sleep(100L - currentPercentage);
+
+                    Thread.sleep(3*(100L - currentPercentage));
                     speedCounter++;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
