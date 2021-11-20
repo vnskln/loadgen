@@ -1,7 +1,5 @@
 package com.pb.loadgen.loadgenerators;
 
-import java.util.Random;
-
 public class StubbornSalesman extends Salesman {
 
     public StubbornSalesman (int percentage) {
@@ -12,9 +10,9 @@ public class StubbornSalesman extends Salesman {
     public void run() {
         long startTime = System.currentTimeMillis();
         while(keepRunning) {
-            if (System.currentTimeMillis() - startTime >= percentage) {
+            if (System.currentTimeMillis() - startTime >= 10*percentage) {
                 try {
-                    Thread.sleep(100L - percentage);
+                    Thread.sleep(10*(100L - percentage));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
