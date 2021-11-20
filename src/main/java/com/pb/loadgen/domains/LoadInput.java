@@ -4,6 +4,7 @@ public class LoadInput {
 
     private int loadPercentage;
     private int indecisiveness;
+    private int speed;
     private LoadType loadType;
 
     public LoadInput () {}
@@ -24,6 +25,14 @@ public class LoadInput {
         this.indecisiveness = indecisiveness;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     public LoadType getLoadType() {
         return loadType;
     }
@@ -31,4 +40,6 @@ public class LoadInput {
     public void setLoadType(LoadType loadType) {
         this.loadType = loadType;
     }
+
+
 }

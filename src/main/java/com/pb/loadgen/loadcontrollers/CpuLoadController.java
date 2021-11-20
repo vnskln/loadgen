@@ -23,7 +23,7 @@ public class CpuLoadController implements LoadController {
                 salesman = new StubbornSalesman(loadInput.getLoadPercentage());
                 break;
             case INDECISIVE_SALESMAN:
-                salesman = new IndecisiveSalesman(loadInput.getLoadPercentage(), loadInput.getIndecisiveness());
+                salesman = new IndecisiveSalesman(loadInput.getLoadPercentage(), loadInput.getIndecisiveness(), loadInput.getSpeed());
                 break;
         }
         worker = new Thread(salesman);
