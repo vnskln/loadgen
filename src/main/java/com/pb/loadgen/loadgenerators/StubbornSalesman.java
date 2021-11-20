@@ -10,9 +10,9 @@ public class StubbornSalesman extends Salesman {
     public void run() {
         long startTime = System.currentTimeMillis();
         while(keepRunning) {
-            if (System.currentTimeMillis() - startTime >= 10*percentage) {
+            if (System.currentTimeMillis() - startTime >= 3*percentage) {
                 try {
-                    Thread.sleep(10*(100L - percentage));
+                    Thread.sleep(3*(100L - percentage));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
