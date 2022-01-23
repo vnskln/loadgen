@@ -17,7 +17,7 @@ public class MemLoadController implements LoadController {
     @Override
     public void generate() {
         System.out.println("Starting load generator");
-        loadArray = new byte [1000*1000*100];
+        loadArray = new byte [1000*1000*loadInput.getLoadPercentage()];
         System.out.println("Load generator started");
     }
 
