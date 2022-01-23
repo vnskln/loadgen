@@ -19,10 +19,10 @@ public class CpuLoadController implements LoadController {
     public void generate() {
         System.out.println("Starting load generator");
         switch (loadInput.getLoadType()) {
-            case STUBBORN_SALESMAN:
+            case CPU_STUBBORN_SALESMAN:
                 salesman = new StubbornSalesman(loadInput.getLoadPercentage());
                 break;
-            case INDECISIVE_SALESMAN:
+            case CPU_INDECISIVE_SALESMAN:
                 salesman = new IndecisiveSalesman(loadInput.getLoadPercentage(), loadInput.getIndecisiveness(), loadInput.getSpeed());
                 break;
         }

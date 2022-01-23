@@ -30,3 +30,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/nbactions.xml
+/nbactions-release-profile.xml
+/nb-configuration.xml
