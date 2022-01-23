@@ -1,8 +1,10 @@
 package com.pb.loadgen.controllers;
 
 import com.pb.loadgen.domains.LoadInput;
+import com.pb.loadgen.domains.LoadType;
 import com.pb.loadgen.loadcontrollers.CpuLoadController;
 import com.pb.loadgen.loadcontrollers.LoadController;
+import com.pb.loadgen.loadcontrollers.MemLoadController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,11 @@ public class HomeController {
 
     @PostMapping("/start")
     public String start (LoadInput loadInput) throws InterruptedException {
-        loadController = new CpuLoadController(loadInput);
+        if (loadInput.getLoadType() == LoadType.MEM_COLLECTOR) {
+            loadController = new MemLoadController(loadInput);
+        } else {
+            loadController = new CpuLoadController(loadInput);
+        }
         loadController.generate();
         return "start";
     }
