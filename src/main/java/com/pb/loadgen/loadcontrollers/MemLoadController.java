@@ -25,6 +25,7 @@ public class MemLoadController implements LoadController {
     public void stopGenerating() {
         loadArray = null;
         System.gc();
+        System.runFinalization();
         System.out.println("Load generator stopped");
     }
 }
