@@ -28,7 +28,7 @@ public class CpuLoadController implements LoadController {
         }
         worker = new Thread(salesman);
         worker.start();
-        System.out.println("Load generator started");
+        System.out.println("CPU load generator started");
     }
 
     @Override
@@ -39,5 +39,6 @@ public class CpuLoadController implements LoadController {
             e.printStackTrace();
         }
         salesman.doStop();
+        System.out.println("CPU load generator stopped");
     }
 }

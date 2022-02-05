@@ -6,8 +6,17 @@ public class LoadInput {
     private int indecisiveness;
     private int speed;
     private LoadType loadType;
+    private int memoryLoadSizeMegaBytes;
 
     public LoadInput () {}
+    
+        public int getMemoryLoadSizeMegaBytes() {
+        return memoryLoadSizeMegaBytes;
+    }
+
+    public void setMemoryLoadSizeMegaBytes(int memoryLoadSizeMegaBytes) {
+        this.memoryLoadSizeMegaBytes = memoryLoadSizeMegaBytes;
+    }
 
     public int getLoadPercentage() {
         return loadPercentage;

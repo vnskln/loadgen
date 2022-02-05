@@ -11,20 +11,32 @@
     <body>
         <div class="jumbotron bg-primary text-center">
             <h1 class="text-white">Load Generator</h1>
-            <p class="text-white">Creating different types of application load since 2021</p>
+            <p class="text-white">Create different types of application load</p>
         </div>
         <div class="container">
             <div class="d-flex flex-row justify-content-center">
                 <div class="p-5">
-                    <form  method="POST" th:action="@{/loadDetails}" th:object="${loadInput}">
-                        <label for="loadPicker">Choose load type:</label>
+                    <form  method="POST" th:action="@{/start}" th:object="${loadInput}">
+                        <label for="loadPicker">Load type:</label>
                         <div id="loadPicker" class="form-group">
                             <select name="loadType">
                                 <option th:each="loadOpt : ${T(com.pb.loadgen.domains.LoadType).values()}"
                                         th:value="${loadOpt}" th:text="${loadOpt}"></option>
                             </select>
                         </div>
-                        <button>Next</button>
+                        <label for="loadPicker">Load percentage:</label>
+                        <div class="form-group">
+                            <input type="text" th:field="*{loadPercentage}"/>
+                        </div>
+                        <label for="loadPicker">Indecisiveness:</label>
+                        <div class="form-group">
+                            <input type="text" th:field="*{indecisiveness}"/>
+                        </div>
+                        <label for="loadPicker">Speed:</label>
+                        <div class="form-group">
+                            <input type="text" th:field="*{speed}"/>
+                        </div>
+                        <button>Start</button>
                     </form>
                 </div>
             </div>
