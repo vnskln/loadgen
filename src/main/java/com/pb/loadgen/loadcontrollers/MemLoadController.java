@@ -19,7 +19,7 @@ public class MemLoadController implements LoadController {
 
     @Override
     public void generate() {
-        System.out.println("Starting hoard procedure");
+        System.out.println("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
         switch (loadInput.getLoadType()) {
             case MEM_COLLECTOR:
                 hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMegaBytes());
@@ -38,6 +38,6 @@ public class MemLoadController implements LoadController {
             e.printStackTrace();
         }
         hoarder.doStop();
-        System.out.println("Memory generator stopped");
+        System.out.println("Memory load generator stopped");
     }
 }

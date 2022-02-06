@@ -17,7 +17,7 @@ public class CpuLoadController implements LoadController {
 
     @Override
     public void generate() {
-        System.out.println("Starting load generator");
+        System.out.println("Starting CPU load generator");
         switch (loadInput.getLoadType()) {
             case CPU_STUBBORN_SALESMAN:
                 salesman = new StubbornSalesman(loadInput.getLoadPercentage());

@@ -16,16 +16,16 @@ public class IndecisiveSalesman extends Salesman {
         long startTime = System.currentTimeMillis();
         int speedCounter = 0;
         int currentPercentage = percentage;
+        int loadCycleLengthInTenthOfSecond = 1;
         while(keepRunning) {
-            if (System.currentTimeMillis() - startTime >= 3*currentPercentage) {
+            if (System.currentTimeMillis() - startTime >= loadCycleLengthInTenthOfSecond*currentPercentage) {
                 try {
-
-                    Thread.sleep(3*(100L - currentPercentage));
+                    Thread.sleep(loadCycleLengthInTenthOfSecond*(100L - currentPercentage));
                     speedCounter++;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (speedCounter >= speed) {
+                if (speedCounter >= 10*speed) {
                     currentPercentage += indecisiveness;
                     if (currentPercentage > 100) {
                         indecisiveness *= -1;

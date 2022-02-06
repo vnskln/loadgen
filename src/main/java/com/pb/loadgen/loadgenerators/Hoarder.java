@@ -4,16 +4,18 @@ public abstract class Hoarder implements Runnable{
     
     protected volatile boolean keepRunning = true;
     protected int loadSizeMegaBytes;
+    byte [] loadArray;
 
-    public Hoarder(int loadSizeBytese) {
-        this.loadSizeMegaBytes = loadSizeMegaBytes;
+    public Hoarder(int loadSizeMegaBytese) {
+        this.loadSizeMegaBytes = loadSizeMegaBytese;
     }
 
     public abstract void run();
-
-    public abstract void doStop();
     
-    public void closeThread() {
+    public void doStop() {
+        loadArray = null;
+        System.gc();
+        System.runFinalization();
         try {
             Thread.sleep(100L);
         } catch (InterruptedException e) {

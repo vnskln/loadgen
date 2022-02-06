@@ -3,44 +3,36 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>LoadGen</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="jumbotron bg-primary text-center">
-            <h1 class="text-white">Load Generator</h1>
-            <p class="text-white">Create different types of application load</p>
+        <div class="jumbotron bg-info text-center">
+            <h1 class="text-white display-4">Load Generator</h1>
+            <p class="text-white lead">Creating different types of application load since 2021</p>
         </div>
         <div class="container">
-            <div class="d-flex flex-row justify-content-center">
-                <div class="p-5">
+            <div class="row justify-content-md-center">
+                <div class="col col-sm-4">
+                    <p>Choose parameters for load type <span th:text="${loadInput.loadType}">loadType</span></p>
                     <form  method="POST" th:action="@{/start}" th:object="${loadInput}">
-                        <div>Choose parameters for load type <span th:text="${loadInput.loadType}">loadType</span></div>
-                        <div th:if="${loadInput.loadType} != ${T(com.pb.loadgen.domains.LoadType).MEM_COLLECTOR}">
-                            <label for="loadPicker">Load percentage:</label>
-                            <div class="form-group">
-                                <input type="text" th:field="*{loadPercentage}"/>
-                            </div>
+                        <div class="form-group" th:if="${loadInput.loadType} != ${T(com.pb.loadgen.domains.LoadType).MEM_COLLECTOR}">
+                            <label>Load percentage:</label>
+                            <input class="form-control" type="text" th:field="*{loadPercentage}"/>
                         </div>
-                        <div th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).CPU_INDECISIVE_SALESMAN}">
+                        <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).CPU_INDECISIVE_SALESMAN}">
                             <label for="loadPicker">Indecisiveness:</label>
-                            <div class="form-group">
-                                <input type="text" th:field="*{indecisiveness}"/>
-                            </div>
+                            <input class="form-control" type="text" th:field="*{indecisiveness}"/>
                             <label for="loadPicker">Change speed:</label>
-                            <div class="form-group">
-                                <input type="text" th:field="*{speed}"/>
-                            </div>
+                            <input class="form-control" type="text" th:field="*{speed}"/>
                         </div>
-                        <div th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_COLLECTOR}">
+                        <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_COLLECTOR}">
                             <label for="loadPicker">Memory load in megabytes:</label>
-                            <div class="form-group">
-                                <input type="text" th:field="*{memoryLoadSizeMegaBytes}"/>
-                            </div>
+                            <input class="form-control" type="text" th:field="*{memoryLoadSizeMegaBytes}"/>
                         </div>
-                        <button>Start</button>
+                        <button class="btn btn-info">Start</button>
                     </form>
                 </div>
             </div>
