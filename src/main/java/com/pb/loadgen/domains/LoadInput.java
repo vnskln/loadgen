@@ -3,21 +3,14 @@ package com.pb.loadgen.domains;
 public class LoadInput {
 
     private int loadPercentage;
-    private int indecisiveness;
-    private int speed;
-    private LoadType loadType;
+    private int loadPercentageHigh;
+    private int loadPercentageChangeStep;
+    private int loadPercentageChangeFrequencyInSeconds;
     private int memoryLoadSizeMegaBytes;
+    private LoadType loadType;
 
     public LoadInput () {}
     
-        public int getMemoryLoadSizeMegaBytes() {
-        return memoryLoadSizeMegaBytes;
-    }
-
-    public void setMemoryLoadSizeMegaBytes(int memoryLoadSizeMegaBytes) {
-        this.memoryLoadSizeMegaBytes = memoryLoadSizeMegaBytes;
-    }
-
     public int getLoadPercentage() {
         return loadPercentage;
     }
@@ -26,20 +19,36 @@ public class LoadInput {
         this.loadPercentage = loadPercentage;
     }
 
-    public int getIndecisiveness() {
-        return indecisiveness;
+    public int getLoadPercentageHigh() {
+        return loadPercentageHigh;
     }
 
-    public void setIndecisiveness(int indecisiveness) {
-        this.indecisiveness = indecisiveness;
+    public void setLoadPercentageHigh(int loadPercentageHigh) {
+        this.loadPercentageHigh = loadPercentageHigh;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getLoadPercentageChangeStep() {
+        return loadPercentageChangeStep;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setLoadPercentageChangeStep(int loadPercentageChangeStep) {
+        this.loadPercentageChangeStep = loadPercentageChangeStep;
+    }
+
+    public int getLoadPercentageChangeFrequencyInSeconds() {
+        return loadPercentageChangeFrequencyInSeconds;
+    }
+
+    public void setLoadPercentageChangeFrequencyInSeconds(int loadPercentageChangeFrequencyInSeconds) {
+        this.loadPercentageChangeFrequencyInSeconds = loadPercentageChangeFrequencyInSeconds;
+    }
+    
+    public int getMemoryLoadSizeMegaBytes() {
+        return memoryLoadSizeMegaBytes;
+    }
+    
+    public void setMemoryLoadSizeMegaBytes(int memoryLoadSizeMegaBytes) {
+        this.memoryLoadSizeMegaBytes = memoryLoadSizeMegaBytes;
     }
 
     public LoadType getLoadType() {
@@ -49,6 +58,5 @@ public class LoadInput {
     public void setLoadType(LoadType loadType) {
         this.loadType = loadType;
     }
-
-
+    
 }

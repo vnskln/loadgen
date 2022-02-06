@@ -4,7 +4,9 @@ import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.Salesman;
 import com.pb.loadgen.loadgenerators.StubbornSalesman;
 import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class CpuLoadController implements LoadController {
 
     LoadInput loadInput;
@@ -17,18 +19,18 @@ public class CpuLoadController implements LoadController {
 
     @Override
     public void generate() {
-        System.out.println("Starting CPU load generator");
+        log.info("Starting CPU load generator");
         switch (loadInput.getLoadType()) {
             case CPU_STUBBORN_SALESMAN:
                 salesman = new StubbornSalesman(loadInput.getLoadPercentage());
                 break;
             case CPU_INDECISIVE_SALESMAN:
-                salesman = new IndecisiveSalesman(loadInput.getLoadPercentage(), loadInput.getIndecisiveness(), loadInput.getSpeed());
+                salesman = new IndecisiveSalesman(loadInput.getLoadPercentage(), loadInput.getLoadPercentageHigh(), loadInput.getLoadPercentageChangeStep(), loadInput.getLoadPercentageChangeFrequencyInSeconds());
                 break;
         }
         worker = new Thread(salesman);
         worker.start();
-        System.out.println("CPU load generator started");
+        log.info("CPU load generator started");
     }
 
     @Override
@@ -39,6 +41,6 @@ public class CpuLoadController implements LoadController {
             e.printStackTrace();
         }
         salesman.doStop();
-        System.out.println("CPU load generator stopped");
+        log.info("CPU load generator stopped");
     }
 }

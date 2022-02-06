@@ -34,4 +34,4 @@ services:
       - 8001:8080
     cpuset: "0"
     cpus: '1'
-    mem_limit: 500M
+    mem_limit: 1024M

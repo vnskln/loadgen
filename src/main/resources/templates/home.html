@@ -34,7 +34,7 @@
                           <div class="card-header" id="stubbornSalesman">
                             <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#stubbornSalesmanDesc" aria-expanded="false" aria-controls="stubbornSalesmanDesc">
-                                StubbornSalesman
+                                Stubborn Salesman
                               </button>
                             </h2>
                           </div>
@@ -53,7 +53,7 @@
                           <div class="card-header" id="indecisiveSalesman">
                             <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#indecisiveSalesmanDesc" aria-expanded="false" aria-controls="indecisiveSalesmanDesc">
-                                IndecisiveSalesman
+                                Indecisive Salesman
                               </button>
                             </h2>
                           </div>
@@ -62,11 +62,11 @@
                                   <p><strong>Parameters:</strong></p>
                                   <ul>
                                       <li>Starting load percentage</li>
-                                      <li>Indecisiveness - size of load percentage change</li>
-                                      <li>Change speed - how many seconds pass between load percentage change</li>
+                                      <li>Indecisiveness - load percentage change</li>
+                                      <li>Change speed - how many seconds pass between load percentage changes</li>
                                   </ul>
                                   <p><strong>Description:</strong></p>
-                                  <p>CPU load starts at given load percentage, then jump up by indecisiveness amount. Speed parameter decides how often (in seconds) jump is made. When load reaches 100% indecisiveness is reversed, and load goes back to starting load percentage step by step. Then cycle repeats indefinitely.</p>
+                                  <p>CPU load starts at given load percentage, then jump up by given step amount. Speed parameter decides how often (aprox. in seconds) jump is made. When load reaches 100% step value is reversed, and load goes back to starting load percentage. Then cycle repeats indefinitely.</p>
                             </div>
                           </div>
                         </div>
@@ -74,7 +74,7 @@
                           <div class="card-header" id="stubbornHoarder">
                             <h2 class="mb-0">
                               <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#stubbornHoarderDesc" aria-expanded="false" aria-controls="stubbornHoarderDesc">
-                                StubbornHoarder
+                                Stubborn Hoarder
                               </button>
                             </h2>
                           </div>
@@ -85,7 +85,7 @@
                                       <li>Memory load in megabytes</li>
                                   </ul>
                                   <p><strong>Description:</strong></p>
-                                  <p>Load generator reserves given amount of megabytes of system memory.</p>
+                                  <p>Load generator reserves given amount of megabytes of system memory. After finishing load test system tries to initialize garbage collection</p>
                             </div>
                           </div>
                         </div>

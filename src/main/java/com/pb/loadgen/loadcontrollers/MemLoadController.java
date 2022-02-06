@@ -6,12 +6,14 @@ import com.pb.loadgen.loadgenerators.Salesman;
 import com.pb.loadgen.loadgenerators.StubbornSalesman;
 import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
 import com.pb.loadgen.loadgenerators.StubbornHoarder;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MemLoadController implements LoadController {
 
     LoadInput loadInput;
     Hoarder hoarder;
-    Thread worker;           
+    Thread worker;
 
     public MemLoadController(LoadInput loadInput) {
         this.loadInput = loadInput;
@@ -19,7 +21,7 @@ public class MemLoadController implements LoadController {
 
     @Override
     public void generate() {
-        System.out.println("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
+        log.info("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
         switch (loadInput.getLoadType()) {
             case MEM_COLLECTOR:
                 hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMegaBytes());
@@ -27,7 +29,7 @@ public class MemLoadController implements LoadController {
         }
         worker = new Thread(hoarder);
         worker.start();
-        System.out.println("Memory load generator started");
+        log.info("Memory load generator started");
     }
 
     @Override
@@ -38,6 +40,6 @@ public class MemLoadController implements LoadController {
             e.printStackTrace();
         }
         hoarder.doStop();
-        System.out.println("Memory load generator stopped");
+        log.info("Memory load generator stopped");
     }
 }
