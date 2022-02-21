@@ -21,15 +21,20 @@ public class MemLoadController implements LoadController {
 
     @Override
     public void generate() {
-        log.info("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
-        switch (loadInput.getLoadType()) {
-            case MEM_COLLECTOR:
-                hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMegaBytes());
-                break;
+        try {
+            log.info("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
+            switch (loadInput.getLoadType()) {
+                case MEM_COLLECTOR:
+                    hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMegaBytes());
+                    break;
+            }
+            worker = new Thread(hoarder);
+            worker.start();
+            log.info("Memory load generator started");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("Memory load generator failed - not enough memory");
         }
-        worker = new Thread(hoarder);
-        worker.start();
-        log.info("Memory load generator started");
     }
 
     @Override

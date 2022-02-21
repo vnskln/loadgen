@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Start</title>
-</head>
-<body>
-<h1>Started</h1>
-<a th:href="@{/stop}">stop</a>
-</body>
+    <head>
+        <title>LoadGen</title>
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron bg-info text-center">
+            <h1 class="text-white display-4">Load Generator</h1>
+            <p class="text-white lead">Creating different types of application load since 2021</p>
+        </div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-sm-4">
+                    <p>Load generator started</p>
+                    <form method="GET" th:action="@{/stop}">
+                        <button class="btn btn-info">Stop</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
