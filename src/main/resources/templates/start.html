@@ -21,6 +21,10 @@
                         <button class="btn btn-info">Stop</button>
                     </form>
                 </div>
+                <div class="col col-sm-4">
+                    <p>Container name: <span th:text="${containerName}">name</span></p>
+                    <a th:href="@{'http://localhost:8003/containers/' + ${containerName}}" target="_blank">cAdvisor dashboard</a>
+                </div>
             </div>
         </div>
     </body>

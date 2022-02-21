@@ -5,7 +5,10 @@ import com.pb.loadgen.domains.LoadType;
 import com.pb.loadgen.loadcontrollers.CpuLoadController;
 import com.pb.loadgen.loadcontrollers.LoadController;
 import com.pb.loadgen.loadcontrollers.MemLoadController;
+import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +19,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Slf4j
 @Controller
 @SessionAttributes("loadInput")
+@ComponentScan
 public class HomeController {
 
     LoadController loadController;
+    @Autowired
+    DockerSpy dockerSpy;
+    String containerName;
     
     @ModelAttribute
     public LoadInput loadInput () {
@@ -26,6 +33,7 @@ public class HomeController {
     }
 
     public HomeController() throws Exception {
+        
     }
 
     @GetMapping("/")
@@ -41,7 +49,12 @@ public class HomeController {
     }
 
     @PostMapping("/start")
-    public String start (@ModelAttribute LoadInput loadInput) throws InterruptedException {
+    public String start (@ModelAttribute LoadInput loadInput, Model model) throws InterruptedException, IOException {
+        if (containerName == null) {
+            containerName = dockerSpy.getContainerName();
+            model.addAttribute("containerName", containerName);
+            log.info("Found container name: " + containerName);
+        }
         if (loadInput.getLoadType() == LoadType.MEM_COLLECTOR) {
             log.info("Front - preparing memory load");
             loadController = new MemLoadController(loadInput);

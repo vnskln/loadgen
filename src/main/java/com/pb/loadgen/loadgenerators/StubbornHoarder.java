@@ -11,11 +11,18 @@ public class StubbornHoarder extends Hoarder {
 
     @Override
     public void run() {
-        loadArray = new byte [1048576*loadSizeMegaBytes];
+        try {
+            loadArray = new byte [1048576*loadSizeMegaBytes];
+        } catch (Exception e) {
+            log.info("Hoarding memory failed");
+            e.printStackTrace();
+            keepRunning = false;
+        }
         log.info("Stubborn load array! Size: " + loadSizeMegaBytes + " MB");
         while(keepRunning) {      
             try {
                     Thread.sleep(10000);
+                    log.info("Hoarding: " + + loadSizeMegaBytes + " MB");
             } catch (InterruptedException e) {
                     e.printStackTrace();
             }
