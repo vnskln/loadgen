@@ -17,8 +17,11 @@ public class DockerSpy {
         
         String output = "";
         if (!isThisWindows) {
-            log.info("Checking container name");
-            String cmd = "cat /proc/self/cgroup | grep \"name\" | cut -d '/' -f3";
+            String [] cmd = {
+                "/bin/sh",
+                "-c",
+                "cat /proc/self/cgroup | grep name | cut -d '/' -f3"
+            };
             Runtime run = Runtime.getRuntime();
             Process pr = run.exec(cmd);
             pr.waitFor();
