@@ -52,10 +52,10 @@ public class HomeController {
     public String start (@ModelAttribute LoadInput loadInput, Model model) throws InterruptedException, IOException {
         if (containerName == null) {
             containerName = dockerSpy.getContainerName();
-            model.addAttribute("containerName", containerName);
             log.info("Found container name: " + containerName);
         }
-        if (loadInput.getLoadType() == LoadType.MEM_COLLECTOR) {
+        model.addAttribute("containerName", containerName);
+        if (loadInput.getLoadType() == LoadType.MEM_STUBBORN_HOARDER) {
             log.info("Front - preparing memory load");
             loadController = new MemLoadController(loadInput);
         } else {

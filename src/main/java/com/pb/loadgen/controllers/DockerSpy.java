@@ -13,6 +13,8 @@ public class DockerSpy {
     
     boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
     
+    Runtime runtime = Runtime.getRuntime();
+    
     public String getContainerName () throws InterruptedException, IOException {
         
         String output = "";
@@ -22,8 +24,7 @@ public class DockerSpy {
                 "-c",
                 "cat /proc/self/cgroup | grep name | cut -d '/' -f3"
             };
-            Runtime run = Runtime.getRuntime();
-            Process pr = run.exec(cmd);
+            Process pr = runtime.exec(cmd);
             pr.waitFor();
             BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
             String line = "";
@@ -33,5 +34,17 @@ public class DockerSpy {
             }
         }
         return output;
+    }
+    
+    public long getTotalMemoryMB () {
+        return runtime.totalMemory()/1024/1024;
+    }
+    
+    public long getFreeMemoryMB () {
+        return runtime.freeMemory()/1024/1024;
+    }
+    
+    public long getUsedMemoryMB () {
+        return (this.getTotalMemoryMB() - this.getFreeMemoryMB());
     }
 }
