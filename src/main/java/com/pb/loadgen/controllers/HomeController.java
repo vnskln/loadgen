@@ -50,6 +50,7 @@ public class HomeController {
     public String loadDetails (@ModelAttribute LoadInput loadInput, Model model) {
         model.addAttribute("initHeap",dockerSpy.getInitHeapMemory());
         model.addAttribute("maxHeap", dockerSpy.getMaxHeapMemory());
+        model.addAttribute("usedHeap",dockerSpy.getUsageHeapMemory());
         log.info("Front - load details");
         return "load_details";
     }

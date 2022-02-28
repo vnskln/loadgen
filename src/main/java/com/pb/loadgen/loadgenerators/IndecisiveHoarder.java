@@ -19,6 +19,8 @@ public class IndecisiveHoarder extends Hoarder {
     @Override
     public void run() {
         int currentLoadSizeMiB = memoryLoadSizeMiB;
+        log.info("Current heap usage: " + dockerSpy.getUsageHeapMemory());
+        log.info("Free heap: " + (dockerSpy.getMaxHeapMemory() - dockerSpy.getUsageHeapMemory()));
         loadArray = new byte[1048576 * currentLoadSizeMiB];
         log.info("Indecisive load array! Size low: " + memoryLoadSizeMiB + "MB; Size high: " + memoryLoadSizeMiBHigh + "MB; Step: " + memoryLoadSizeMiBChangeStep + "MB; Frequency: " + memoryLoadChangeFrequencyS + "s");
         while (keepRunning) {
