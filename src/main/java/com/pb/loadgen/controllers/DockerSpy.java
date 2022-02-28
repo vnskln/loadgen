@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class DockerSpy {
     
     boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    int mb = 1024 * 1024;
     MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
     Runtime runtime = Runtime.getRuntime();
     
@@ -40,14 +39,14 @@ public class DockerSpy {
     }
     
     public long getInitHeapMemory () {
-        return memBean.getHeapMemoryUsage().getInit()/mb;
+        return memBean.getHeapMemoryUsage().getInit();
     }
     
     public long getMaxHeapMemory () {
-        return memBean.getHeapMemoryUsage().getMax()/mb;
+        return memBean.getHeapMemoryUsage().getMax();
     }
     
     public long getUsageHeapMemory () {
-        return memBean.getHeapMemoryUsage().getUsed()/mb;
+        return memBean.getHeapMemoryUsage().getUsed();
     }
 }
