@@ -3,6 +3,7 @@ package com.pb.loadgen.loadcontrollers;
 import com.pb.loadgen.controllers.DockerSpy;
 import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.Hoarder;
+import com.pb.loadgen.loadgenerators.IndecisiveHoarder;
 import com.pb.loadgen.loadgenerators.Salesman;
 import com.pb.loadgen.loadgenerators.StubbornSalesman;
 import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
@@ -26,14 +27,19 @@ public class MemLoadController implements LoadController {
     @Override
     public void generate() {
         try {
-            log.info("Starting memory load generator: " + loadInput.getMemoryLoadSizeMegaBytes() + " megabytes");
+            log.info("Starting memory load generator");
             dockerSpy = new DockerSpy();
             log.info("Total memory: " + dockerSpy.getTotalMemoryMB());
             log.info("Used memory: " + dockerSpy.getUsedMemoryMB());
             log.info("Available memory: " + dockerSpy.getFreeMemoryMB());
+            log.info("Max available memory: " + dockerSpy.getMaxMemoryMB());
             switch (loadInput.getLoadType()) {
                 case MEM_STUBBORN_HOARDER:
-                    hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMegaBytes());
+                    hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMiB());
+                    break;
+                case MEM_INDECISIVE_HOARDER:
+                    hoarder = new IndecisiveHoarder(loadInput.getMemoryLoadSizeMiB(), loadInput.getMemoryLoadSizeMiBHigh(),
+                    loadInput.getMemoryLoadSizeMiBChangeStep(), loadInput.getMemoryLoadChangeFrequencyS());
                     break;
             }
             worker = new Thread(hoarder);

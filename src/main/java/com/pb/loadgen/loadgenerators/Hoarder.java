@@ -1,13 +1,16 @@
 package com.pb.loadgen.loadgenerators;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class Hoarder implements Runnable{
     
     protected volatile boolean keepRunning = true;
-    protected int loadSizeMegaBytes;
+    protected int memoryLoadSizeMiB;
     byte [] loadArray;
 
-    public Hoarder(int loadSizeMegaBytese) {
-        this.loadSizeMegaBytes = loadSizeMegaBytese;
+    public Hoarder(int memoryLoadSizeMiB) {
+        this.memoryLoadSizeMiB = memoryLoadSizeMiB;
     }
 
     public abstract void run();
@@ -22,5 +25,6 @@ public abstract class Hoarder implements Runnable{
             e.printStackTrace();
         }
         this.keepRunning = false;
+        log.info("Finising load cycle");
     }
 }

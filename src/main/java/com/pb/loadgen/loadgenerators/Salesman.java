@@ -1,12 +1,15 @@
 package com.pb.loadgen.loadgenerators;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class Salesman implements Runnable{
 
     protected volatile boolean keepRunning = true;
-    protected int percentage;
+    protected int loadPercentage;
 
     public Salesman(int percentage) {
-        this.percentage = percentage;
+        this.loadPercentage = percentage;
     }
 
     public abstract void run();
@@ -18,5 +21,6 @@ public abstract class Salesman implements Runnable{
             e.printStackTrace();
         }
         this.keepRunning = false;
+        log.info("Finising load cycle");
     }
 }

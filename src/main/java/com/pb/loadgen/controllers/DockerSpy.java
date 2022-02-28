@@ -44,6 +44,10 @@ public class DockerSpy {
         return runtime.freeMemory()/1024/1024;
     }
     
+    public long getMaxMemoryMB () {
+        return runtime.maxMemory()/1024/1024;
+    }
+    
     public long getUsedMemoryMB () {
         return (this.getTotalMemoryMB() - this.getFreeMemoryMB());
     }

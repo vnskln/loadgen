@@ -20,23 +20,34 @@
                     <form  method="POST" th:action="@{/start}" th:object="${loadInput}">
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).CPU_STUBBORN_SALESMAN}">
                             <label>Load percentage:</label>
-                            <input class="form-control" type="text" th:field="*{loadPercentage}"/>
+                            <input class="form-control" type="number" min="0" max="100" th:field="*{loadPercentage}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).CPU_INDECISIVE_SALESMAN}">
                             <label>Load percentage - lower threshold:</label>
-                            <input class="form-control" type="text" th:field="*{loadPercentage}"/>
+                            <input class="form-control" type="number" min="0" max="100" th:field="*{loadPercentage}"/>
                             <label>Load percentage - high threshold:</label>
-                            <input class="form-control" type="text" th:field="*{loadPercentageHigh}"/>
+                            <input class="form-control" type="number" min="0" max="100" th:field="*{loadPercentageHigh}"/>
                             <label for="loadPicker">Load percentage change step:</label>
-                            <input class="form-control" type="text" th:field="*{loadPercentageChangeStep}"/>
+                            <input class="form-control" type="number" min="0" max="100" th:field="*{loadPercentageChangeStep}"/>
                             <label for="loadPicker">Load percentage change frequency in seconds:</label>
-                            <input class="form-control" type="text" th:field="*{loadPercentageChangeFrequencyInSeconds}"/>
+                            <input class="form-control" type="number" min="0" max="60" th:field="*{loadPercentageChangeFrequencyS}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_STUBBORN_HOARDER}">
                             <label for="loadPicker">Memory load in megabytes:</label>
-                            <input class="form-control" type="text" th:field="*{memoryLoadSizeMegaBytes}"/>
+                            <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiB}"/>
+                        </div>
+                        <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_INDECISIVE_HOARDER}">
+                            <label for="loadPicker">Memory load [MiB]:</label>
+                            <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiB}"/>
+                            <label for="loadPicker">Memory load - high threshold [MiB]:</label>
+                            <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiBHigh}"/>
+                            <label for="loadPicker">Memory load change step [MiB]:</label>
+                            <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiBChangeStep}"/>
+                            <label for="loadPicker">Memory load change frequency [s]:</label>
+                            <input class="form-control" type="number" min="1" th:field="*{memoryLoadChangeFrequencyS}"/>
                         </div>
                         <button class="btn btn-info">Start</button>
+                        <button class="btn btn-danger" th:formaction="@{/}">Back</button>
                     </form>
                 </div>
             </div>

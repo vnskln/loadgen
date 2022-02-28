@@ -5,25 +5,25 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IndecisiveSalesman extends Salesman {
 
-    public int indecisiveness;
-    public int loadPercentageChangeFrequencyInSeconds;
-    public int percentageHigh;
+    public int loadPercentageChangeStep;
+    public int loadPercentageChangeFrequencyS;
+    public int loadPercentageHigh;
 
-    public IndecisiveSalesman (int percentage, int percentageHigh, int loadPercentageChangeStep, int loadPercentageChangeFrequencyInSeconds) {
-        super (percentage);
-        this.percentageHigh = percentageHigh;
-        this.indecisiveness = loadPercentageChangeStep;
-        this.loadPercentageChangeFrequencyInSeconds=loadPercentageChangeFrequencyInSeconds;
+    public IndecisiveSalesman (int loadPercentage, int loadPercentageHigh, int loadPercentageChangeStep, int loadPercentageChangeFrequencyS) {
+        super (Math.min(loadPercentage,loadPercentageHigh));
+        this.loadPercentageHigh = Math.max(loadPercentage, loadPercentageHigh);
+        this.loadPercentageChangeStep = loadPercentageChangeStep;
+        this.loadPercentageChangeFrequencyS=loadPercentageChangeFrequencyS;
     }
 
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();
         int cycleCounter = 0;
-        int currentPercentage = percentage;
+        int currentPercentage = loadPercentage;
         int loadCycleLengthInTenthOfSecond = 1;
-        int counterValueForLoadChange = loadPercentageChangeFrequencyInSeconds / loadCycleLengthInTenthOfSecond * 10;
-        log.info("Indecisive cycle! Load low: " + percentage + "; Load high: " + percentageHigh + "; Step: " + indecisiveness + "; Cycle length: " + loadPercentageChangeFrequencyInSeconds);
+        int counterValueForLoadChange = loadPercentageChangeFrequencyS / loadCycleLengthInTenthOfSecond * 10;
+        log.info("Indecisive cycle! Load low: " + loadPercentage + "; Load high: " + loadPercentageHigh + "; Step: " + loadPercentageChangeStep + "; Cycle length: " + loadPercentageChangeFrequencyS);
         while(keepRunning) {
             if (System.currentTimeMillis() - startTime >= loadCycleLengthInTenthOfSecond*currentPercentage) {
                 try {
@@ -33,16 +33,19 @@ public class IndecisiveSalesman extends Salesman {
                     e.printStackTrace();
                 }
                 if (cycleCounter >= counterValueForLoadChange) {
-                    currentPercentage += indecisiveness;
-                    if (currentPercentage > percentageHigh) {
-                        indecisiveness *= -1;
-                        currentPercentage = percentageHigh;
+                    currentPercentage += loadPercentageChangeStep;
+                    if (currentPercentage > loadPercentageHigh) {
+                        loadPercentageChangeStep *= -1;
+                        log.info("Load above max value. Reversing");
+                        currentPercentage = loadPercentageHigh;
                     }
-                    if (currentPercentage < percentage) {
-                        indecisiveness *= -1;
-                        currentPercentage = percentage;
+                    if (currentPercentage < loadPercentage) {
+                        loadPercentageChangeStep *= -1;
+                        log.info("Load below min value. Reversing");
+                        currentPercentage = loadPercentage;
                     }
                     cycleCounter = 0;
+                    log.info("Using: " + currentPercentage + "% of CPU core");
                 }
                 startTime = System.currentTimeMillis();
             }

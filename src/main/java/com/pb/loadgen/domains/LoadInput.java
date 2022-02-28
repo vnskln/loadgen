@@ -1,12 +1,19 @@
 package com.pb.loadgen.domains;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 public class LoadInput {
 
     private int loadPercentage;
     private int loadPercentageHigh;
     private int loadPercentageChangeStep;
-    private int loadPercentageChangeFrequencyInSeconds;
-    private int memoryLoadSizeMegaBytes;
+    private int loadPercentageChangeFrequencyS;
+    private int memoryLoadSizeMiB;
+    private int memoryLoadSizeMiBHigh;
+    private int memoryLoadSizeMiBChangeStep;
+    private int memoryLoadChangeFrequencyS;
     private LoadType loadType;
 
     public LoadInput () {}
@@ -35,20 +42,44 @@ public class LoadInput {
         this.loadPercentageChangeStep = loadPercentageChangeStep;
     }
 
-    public int getLoadPercentageChangeFrequencyInSeconds() {
-        return loadPercentageChangeFrequencyInSeconds;
+    public int getLoadPercentageChangeFrequencyS() {
+        return loadPercentageChangeFrequencyS;
     }
 
-    public void setLoadPercentageChangeFrequencyInSeconds(int loadPercentageChangeFrequencyInSeconds) {
-        this.loadPercentageChangeFrequencyInSeconds = loadPercentageChangeFrequencyInSeconds;
+    public void setLoadPercentageChangeFrequencyS(int loadPercentageChangeFrequencyS) {
+        this.loadPercentageChangeFrequencyS = loadPercentageChangeFrequencyS;
     }
     
-    public int getMemoryLoadSizeMegaBytes() {
-        return memoryLoadSizeMegaBytes;
+    public int getMemoryLoadSizeMiB() {
+        return memoryLoadSizeMiB;
     }
     
-    public void setMemoryLoadSizeMegaBytes(int memoryLoadSizeMegaBytes) {
-        this.memoryLoadSizeMegaBytes = memoryLoadSizeMegaBytes;
+    public void setMemoryLoadSizeMiB(int memoryLoadSizeMiB) {
+        this.memoryLoadSizeMiB = memoryLoadSizeMiB;
+    }
+    
+    public int getMemoryLoadSizeMiBHigh() {
+        return memoryLoadSizeMiBHigh;
+    }
+
+    public void setMemoryLoadSizeMiBHigh(int memoryLoadSizeMiBHigh) {
+        this.memoryLoadSizeMiBHigh = memoryLoadSizeMiBHigh;
+    }
+
+    public int getMemoryLoadSizeMiBChangeStep() {
+        return memoryLoadSizeMiBChangeStep;
+    }
+
+    public void setMemoryLoadSizeMiBChangeStep(int memoryLoadSizeMiBChangeStep) {
+        this.memoryLoadSizeMiBChangeStep = memoryLoadSizeMiBChangeStep;
+    }
+
+    public int getMemoryLoadChangeFrequencyS() {
+        return memoryLoadChangeFrequencyS;
+    }
+
+    public void setMemoryLoadChangeFrequencyS(int memoryLoadChangeFrequencyS) {
+        this.memoryLoadChangeFrequencyS = memoryLoadChangeFrequencyS;
     }
 
     public LoadType getLoadType() {

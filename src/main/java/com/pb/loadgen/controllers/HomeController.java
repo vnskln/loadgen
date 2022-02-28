@@ -6,14 +6,17 @@ import com.pb.loadgen.loadcontrollers.CpuLoadController;
 import com.pb.loadgen.loadcontrollers.LoadController;
 import com.pb.loadgen.loadcontrollers.MemLoadController;
 import java.io.IOException;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Slf4j
@@ -36,8 +39,8 @@ public class HomeController {
         
     }
 
-    @GetMapping("/")
-    public String home (@ModelAttribute LoadInput loadInput) {
+    @RequestMapping("/")
+    public String home (@ModelAttribute LoadInput loadInput, Model model) {
         log.info("Front - load picker");
         return "home";
     }
@@ -55,7 +58,7 @@ public class HomeController {
             log.info("Found container name: " + containerName);
         }
         model.addAttribute("containerName", containerName);
-        if (loadInput.getLoadType() == LoadType.MEM_STUBBORN_HOARDER) {
+        if (loadInput.getLoadType() == LoadType.MEM_STUBBORN_HOARDER || loadInput.getLoadType() == LoadType.MEM_INDECISIVE_HOARDER) {
             log.info("Front - preparing memory load");
             loadController = new MemLoadController(loadInput);
         } else {
