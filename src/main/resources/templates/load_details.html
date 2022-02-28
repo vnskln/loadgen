@@ -33,10 +33,14 @@
                             <input class="form-control" type="number" min="0" max="60" th:field="*{loadPercentageChangeFrequencyS}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_STUBBORN_HOARDER}">
+                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MB</p>
+                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MB</p>
                             <label for="loadPicker">Memory load in megabytes:</label>
                             <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiB}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_INDECISIVE_HOARDER}">
+                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MB</p>
+                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MB</p>
                             <label for="loadPicker">Memory load [MiB]:</label>
                             <input class="form-control" type="number" min="1" th:field="*{memoryLoadSizeMiB}"/>
                             <label for="loadPicker">Memory load - high threshold [MiB]:</label>

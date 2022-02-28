@@ -28,11 +28,6 @@ public class MemLoadController implements LoadController {
     public void generate() {
         try {
             log.info("Starting memory load generator");
-            dockerSpy = new DockerSpy();
-            log.info("Total memory: " + dockerSpy.getTotalMemoryMB());
-            log.info("Used memory: " + dockerSpy.getUsedMemoryMB());
-            log.info("Available memory: " + dockerSpy.getFreeMemoryMB());
-            log.info("Max available memory: " + dockerSpy.getMaxMemoryMB());
             switch (loadInput.getLoadType()) {
                 case MEM_STUBBORN_HOARDER:
                     hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMiB());

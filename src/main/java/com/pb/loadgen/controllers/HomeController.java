@@ -41,12 +41,15 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home (@ModelAttribute LoadInput loadInput, Model model) {
+        model.addAttribute(new LoadInput());
         log.info("Front - load picker");
         return "home";
     }
     
     @PostMapping("/loadDetails")
-    public String loadDetails (@ModelAttribute LoadInput loadInput) {
+    public String loadDetails (@ModelAttribute LoadInput loadInput, Model model) {
+        model.addAttribute("initHeap",dockerSpy.getInitHeapMemory());
+        model.addAttribute("maxHeap", dockerSpy.getMaxHeapMemory());
         log.info("Front - load details");
         return "load_details";
     }

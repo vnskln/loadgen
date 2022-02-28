@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,8 @@ import org.springframework.stereotype.Component;
 public class DockerSpy {
     
     boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    
+    int mb = 1024 * 1024;
+    MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
     Runtime runtime = Runtime.getRuntime();
     
     public String getContainerName () throws InterruptedException, IOException {
@@ -36,19 +39,15 @@ public class DockerSpy {
         return output;
     }
     
-    public long getTotalMemoryMB () {
-        return runtime.totalMemory()/1024/1024;
+    public long getInitHeapMemory () {
+        return memBean.getHeapMemoryUsage().getInit()/mb;
     }
     
-    public long getFreeMemoryMB () {
-        return runtime.freeMemory()/1024/1024;
+    public long getMaxHeapMemory () {
+        return memBean.getHeapMemoryUsage().getMax()/mb;
     }
     
-    public long getMaxMemoryMB () {
-        return runtime.maxMemory()/1024/1024;
-    }
-    
-    public long getUsedMemoryMB () {
-        return (this.getTotalMemoryMB() - this.getFreeMemoryMB());
+    public long getUsageHeapMemory () {
+        return memBean.getHeapMemoryUsage().getUsed()/mb;
     }
 }
