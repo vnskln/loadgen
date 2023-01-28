@@ -9,17 +9,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CpuLoadController implements LoadController {
 
-    LoadInput loadInput;
-    Salesman salesman;
-    Thread worker;
+    private LoadInput loadInput;
+    private Salesman salesman;
+    private Thread [] workers;
+    private long startTime = 0;
+    private long stopTime = 0;
+    private long elapsedTime = 0;
 
     public CpuLoadController(LoadInput loadInput) {
         this.loadInput = loadInput;
+        this.workers = new Thread [loadInput.getThreadNumber()];
     }
 
     @Override
     public void generate() {
         log.info("Starting CPU load generator");
+        startTime = System.currentTimeMillis();
         switch (loadInput.getLoadType()) {
             case CPU_STUBBORN_SALESMAN:
                 salesman = new StubbornSalesman(loadInput.getLoadPercentage());
@@ -29,19 +34,34 @@ public class CpuLoadController implements LoadController {
                         loadInput.getLoadPercentageChangeStep(), loadInput.getLoadPercentageChangeFrequencyS());
                 break;
         }
-        worker = new Thread(salesman);
-        worker.start();
+        for (int i=0; i<loadInput.getThreadNumber(); i++) {
+            log.info("CPU load thread " + i + " starting");
+            workers [i] = new Thread(salesman);
+            workers[i].start();
+            log.info("CPU load thread " + i + " started");
+        }
+        
         log.info("CPU load generator started");
     }
 
     @Override
     public void stopGenerating() {
-        try {
-            Thread.sleep(100L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        salesman.doStop();
+        for (int i=0; i<loadInput.getThreadNumber(); i++) {
+            try {
+                workers[i].sleep(100L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            salesman.doStop();
+        stopTime = System.currentTimeMillis();
+        elapsedTime = (stopTime - startTime)/1000;
         log.info("CPU load generator stopped");
+        }
+        
+    }
+
+    @Override
+    public long getElapsedTime() {
+        return elapsedTime;
     }
 }

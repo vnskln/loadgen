@@ -39,14 +39,18 @@ public class DockerSpy {
     }
     
     public long getInitHeapMemory () {
-        return memBean.getHeapMemoryUsage().getInit();
+        return memBean.getHeapMemoryUsage().getInit()/1024/1024;
     }
     
     public long getMaxHeapMemory () {
-        return memBean.getHeapMemoryUsage().getMax();
+        return memBean.getHeapMemoryUsage().getMax()/1024/1024;
     }
     
     public long getUsageHeapMemory () {
-        return memBean.getHeapMemoryUsage().getUsed();
+        return memBean.getHeapMemoryUsage().getUsed()/1024/1024;
+    }
+    
+    public int getLogicalProcessorNumber() {
+        return runtime.availableProcessors();
     }
 }

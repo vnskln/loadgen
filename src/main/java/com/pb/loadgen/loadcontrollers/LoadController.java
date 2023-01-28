@@ -4,5 +4,6 @@ public interface LoadController {
     
     void generate() throws InterruptedException;
     void stopGenerating();
+    long getElapsedTime();
     
 }

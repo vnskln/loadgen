@@ -17,6 +17,9 @@
             <div class="row justify-content-md-center">
                 <div class="col col-sm-4">
                     <p>Load generator stopped</p>
+                    <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).HANOI_RESOLVER}">
+                        <p>Elapsed time: <span th:text="${elapsedTime}">elapsedTime</span> seconds</p>
+                    </div>
                     <form method="GET" th:action="@{/}">
                         <button class="btn btn-info">Again</button>
                     </form>

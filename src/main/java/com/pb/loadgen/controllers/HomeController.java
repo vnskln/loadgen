@@ -3,6 +3,7 @@ package com.pb.loadgen.controllers;
 import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.domains.LoadType;
 import com.pb.loadgen.loadcontrollers.CpuLoadController;
+import com.pb.loadgen.loadcontrollers.HanoiLoadController;
 import com.pb.loadgen.loadcontrollers.LoadController;
 import com.pb.loadgen.loadcontrollers.MemLoadController;
 import java.io.IOException;
@@ -51,6 +52,15 @@ public class HomeController {
         model.addAttribute("initHeap",dockerSpy.getInitHeapMemory());
         model.addAttribute("maxHeap", dockerSpy.getMaxHeapMemory());
         model.addAttribute("usedHeap",dockerSpy.getUsageHeapMemory());
+        model.addAttribute("logicalProcessorNumber", dockerSpy.getLogicalProcessorNumber());
+        loadInput.setThreadNumber(1);
+        loadInput.setLoadPercentageHigh(1);
+        loadInput.setLoadPercentageChangeStep(1);
+        loadInput.setLoadPercentageChangeFrequencyS(1);
+        loadInput.setMemoryLoadSizeMiBHigh(1);
+        loadInput.setMemoryLoadSizeMiBChangeStep(1);
+        loadInput.setMemoryLoadChangeFrequencyS(1);
+        loadInput.setHanoiSize(1);
         log.info("Front - load details");
         return "load_details";
     }
@@ -65,11 +75,19 @@ public class HomeController {
         if (loadInput.getLoadType() == LoadType.MEM_STUBBORN_HOARDER || loadInput.getLoadType() == LoadType.MEM_INDECISIVE_HOARDER) {
             log.info("Front - preparing memory load");
             loadController = new MemLoadController(loadInput);
-        } else {
+        } else if (loadInput.getLoadType() == LoadType.CPU_STUBBORN_SALESMAN || loadInput.getLoadType() == LoadType.CPU_INDECISIVE_SALESMAN){
             log.info("Front - preparing CPU load");
             loadController = new CpuLoadController(loadInput);
+        } else {
+            log.info("Front - preparing hanoi load");
+            loadController = new HanoiLoadController(loadInput);
         }
         loadController.generate();
+        model.addAttribute("elapsedTime", loadController.getElapsedTime());
+        if (loadInput.getLoadType() == LoadType.HANOI_RESOLVER) {
+            log.info("Front - hanoi load stop");
+            return "stop";
+        } else
         return "start";
     }
 

@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public class LoadInput {
 
+    private int threadNumber;
     private int loadPercentage;
     private int loadPercentageHigh;
     private int loadPercentageChangeStep;
@@ -14,9 +15,18 @@ public class LoadInput {
     private int memoryLoadSizeMiBHigh;
     private int memoryLoadSizeMiBChangeStep;
     private int memoryLoadChangeFrequencyS;
+    private int hanoiSize;
     private LoadType loadType;
 
     public LoadInput () {}
+
+    public int getThreadNumber() {
+        return threadNumber;
+    }
+
+    public void setThreadNumber(int threadNumber) {
+        this.threadNumber = threadNumber;
+    }
     
     public int getLoadPercentage() {
         return loadPercentage;
@@ -82,6 +92,14 @@ public class LoadInput {
         this.memoryLoadChangeFrequencyS = memoryLoadChangeFrequencyS;
     }
 
+    public int getHanoiSize() {
+        return hanoiSize;
+    }
+
+    public void setHanoiSize(int hanoiSize) {
+        this.hanoiSize = hanoiSize;
+    }
+    
     public LoadType getLoadType() {
         return loadType;
     }

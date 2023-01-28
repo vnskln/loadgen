@@ -15,10 +15,13 @@ import org.springframework.context.annotation.ComponentScan;
 @Slf4j
 public class MemLoadController implements LoadController {
 
-    LoadInput loadInput;
-    Hoarder hoarder;
-    Thread worker;
-    DockerSpy dockerSpy;
+    private LoadInput loadInput;
+    private Hoarder hoarder;
+    private Thread worker;
+    private DockerSpy dockerSpy;
+    private long startTime = 0;
+    private long stopTime = 0;
+    private long elapsedTime = 0;
 
     public MemLoadController(LoadInput loadInput) {
         this.loadInput = loadInput;
@@ -28,6 +31,7 @@ public class MemLoadController implements LoadController {
     public void generate() {
         try {
             log.info("Starting memory load generator");
+            startTime = System.currentTimeMillis();
             switch (loadInput.getLoadType()) {
                 case MEM_STUBBORN_HOARDER:
                     hoarder = new StubbornHoarder(loadInput.getMemoryLoadSizeMiB());
@@ -54,6 +58,13 @@ public class MemLoadController implements LoadController {
             e.printStackTrace();
         }
         hoarder.doStop();
+        stopTime = System.currentTimeMillis();
+        elapsedTime = (stopTime - startTime)/1000;
         log.info("Memory load generator stopped");
+    }
+    
+    @Override
+    public long getElapsedTime() {
+        return elapsedTime;
     }
 }
