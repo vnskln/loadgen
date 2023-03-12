@@ -13,12 +13,13 @@ public class StubbornHoarder extends Hoarder {
     public void run() {
         log.info("Current heap usage: " + dockerSpy.getUsageHeapMemory());
         log.info("Free heap: " + (dockerSpy.getMaxHeapMemory() - dockerSpy.getUsageHeapMemory()));
-        loadArray = new byte [1048576*memoryLoadSizeMiB];
+        loadArray = new byte [memoryLoadSizeMiB][1048576];
+        randomizeLoadArray();
         log.info("Stubborn load array! Size: " + memoryLoadSizeMiB + " MB");
         while(keepRunning) {      
             try {
                 Thread.sleep(10000);
-                log.info("Hoarding: " + + memoryLoadSizeMiB + " MB");
+                log.info("Hoarding: " + memoryLoadSizeMiB + " MB");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

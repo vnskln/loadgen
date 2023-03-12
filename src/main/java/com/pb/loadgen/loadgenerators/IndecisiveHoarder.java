@@ -1,5 +1,6 @@
 package com.pb.loadgen.loadgenerators;
 
+import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,7 +22,8 @@ public class IndecisiveHoarder extends Hoarder {
         int currentLoadSizeMiB = memoryLoadSizeMiB;
         log.info("Current heap usage: " + dockerSpy.getUsageHeapMemory());
         log.info("Free heap: " + (dockerSpy.getMaxHeapMemory() - dockerSpy.getUsageHeapMemory()));
-        loadArray = new byte[1048576 * currentLoadSizeMiB];
+        loadArray = new byte [memoryLoadSizeMiB][1048576];
+        randomizeLoadArray();
         log.info("Indecisive load array! Size low: " + memoryLoadSizeMiB + "MB; Size high: " + memoryLoadSizeMiBHigh + "MB; Step: " + memoryLoadSizeMiBChangeStep + "MB; Frequency: " + memoryLoadChangeFrequencyS + "s");
         while (keepRunning) {
             try {
@@ -39,8 +41,12 @@ public class IndecisiveHoarder extends Hoarder {
                     log.info("Load below min value. Reversing");
                     currentLoadSizeMiB = memoryLoadSizeMiB;
                 }
+                clearLoadArray();
                 loadArray = null;
-                loadArray = new byte[1048576 * currentLoadSizeMiB];
+                System.gc();
+                System.runFinalization();
+                loadArray = new byte [currentLoadSizeMiB][1048576];
+                randomizeLoadArray();
                 log.info("Hoarding: " + currentLoadSizeMiB + " MB");
             } catch (InterruptedException e) {
                 e.printStackTrace();
