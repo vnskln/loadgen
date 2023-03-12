@@ -25,6 +25,8 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     expose:
+      - 9100
+    ports:
       - 8002:9100
   loadGenerator:
     image: loadgen-0.0.1
