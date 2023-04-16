@@ -3,7 +3,7 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.44.0
     container_name: cadvisor
-    command: --enable-load-reader=true
+    command: --enable_load_reader=true
     restart: always
     ports:
       - 8003:8080
