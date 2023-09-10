@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>LoadGen</title>
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron bg-info text-center">
+            <h1 class="text-white display-4">Load Generator</h1>
+            <p class="text-white lead">Creating different types of application load since 2021</p>
+        </div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Load Details</th>
+                            <th>Thread count</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="load: ${loadSummary}">
+                            <td th:text="${load.key}" />
+                            <td th:text="${load.value.getDetails()}" />
+                            <td th:text="${threadsCount.get(load.key)}" />
+                            <td>
+                                <form method="POST" th:action="@{/delete}">
+                                    <input type="hidden" name="deleteid" th:value="${load.key}" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Threads list</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="thread: ${threadsRunning}">
+                            <td th:text="${thread}"/>
+                        </tr>
+                    </tbody>
+                </table>
+                <form method="GET" th:action="@{/}">
+                    <button class="btn btn-info">Back</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

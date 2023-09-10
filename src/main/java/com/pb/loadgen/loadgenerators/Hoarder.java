@@ -32,9 +32,9 @@ public abstract class Hoarder implements Runnable{
             randomGenerator.nextBytes(loadArray[i]);
         }
     }
-
-    public abstract void run();
     
+    public abstract void run();
+ 
     public void doStop() {
         clearLoadArray();
         loadArray = null;
@@ -46,6 +46,6 @@ public abstract class Hoarder implements Runnable{
             e.printStackTrace();
         }
         this.keepRunning = false;
-        log.info("Finising load cycle");
+        log.info("Finishing load cycle");
     }
 }

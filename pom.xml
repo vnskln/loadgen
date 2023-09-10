@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.pb</groupId>
     <artifactId>loadgen</artifactId>
-    <version>0.7.0</version>
+    <version>1.0.0</version>
     <name>loadgen</name>
     <description>Load generator for docker</description>
     <properties>

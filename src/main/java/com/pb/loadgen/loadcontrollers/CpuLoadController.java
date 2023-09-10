@@ -4,6 +4,7 @@ import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.Salesman;
 import com.pb.loadgen.loadgenerators.StubbornSalesman;
 import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
+import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,7 +24,7 @@ public class CpuLoadController implements LoadController {
 
     @Override
     public void generate() {
-        log.info("Starting CPU load generator");
+        log.info("Starting CPU load generator: " + loadInput.getUniqueID());
         startTime = System.currentTimeMillis();
         switch (loadInput.getLoadType()) {
             case CPU_STUBBORN_SALESMAN:
@@ -35,13 +36,14 @@ public class CpuLoadController implements LoadController {
                 break;
         }
         for (int i=0; i<loadInput.getThreadNumber(); i++) {
-            log.info("CPU load thread " + i + " starting");
-            workers [i] = new Thread(salesman);
+            log.info("CPU load thread " + i + " starting: " + loadInput.getUniqueID());
+            workers[i] = new Thread(salesman);
+            workers[i].setName("loadgt//" + loadInput.getUniqueID() + "//" + i);
             workers[i].start();
-            log.info("CPU load thread " + i + " started");
+            log.info("CPU load thread " + i + " started: " + loadInput.getUniqueID());
         }
         
-        log.info("CPU load generator started");
+        log.info("CPU load generator started: " + loadInput.getUniqueID());
     }
 
     @Override
@@ -53,11 +55,23 @@ public class CpuLoadController implements LoadController {
                 e.printStackTrace();
             }
             salesman.doStop();
-        stopTime = System.currentTimeMillis();
-        elapsedTime = (stopTime - startTime)/1000;
-        log.info("CPU load generator stopped");
+            stopTime = System.currentTimeMillis();
+            elapsedTime = (stopTime - startTime)/1000;
+            log.info("CPU load generator stopped: " + loadInput.getUniqueID());
         }
+    }
+
+    @Override
+    public String getDetails() {
+        String details = loadInput.getLoadType().toString() + ", " + loadInput.getLoadPercentage();
+        if (loadInput.getLoadType().toString().equals("CPU_INDECISIVE_SALESMAN")) {
+            details += " - " + loadInput.getLoadPercentageHigh();
+            details += ", step " + loadInput.getLoadPercentageChangeStep();
+            details += ", freq " + loadInput.getLoadPercentageChangeFrequencyS();
+        }
+        details += ", threads " + loadInput.getThreadNumber();
         
+        return details;
     }
 
     @Override

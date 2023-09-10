@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class DockerSpy {
     
-    boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
-    Runtime runtime = Runtime.getRuntime();
+    private boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
+    private MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
+    private Runtime runtime = Runtime.getRuntime();
     
-    public String getContainerName () throws InterruptedException, IOException {
+    protected String getContainerName () throws InterruptedException, IOException {
         
         String output = "";
         if (!isThisWindows) {

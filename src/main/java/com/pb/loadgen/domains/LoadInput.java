@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public class LoadInput {
 
+    private String uniqueID;
     private int threadNumber;
     private int loadPercentage;
     private int loadPercentageHigh;
@@ -16,9 +17,18 @@ public class LoadInput {
     private int memoryLoadSizeMiBChangeStep;
     private int memoryLoadChangeFrequencyS;
     private int hanoiSize;
+    private boolean hanoiForeground;
     private LoadType loadType;
 
     public LoadInput () {}
+    
+    public String getUniqueID() {
+        return uniqueID;
+    }
+
+    public void setUniqueID(String uniqueID) {
+        this.uniqueID = uniqueID;
+    }
 
     public int getThreadNumber() {
         return threadNumber;
@@ -98,6 +108,14 @@ public class LoadInput {
 
     public void setHanoiSize(int hanoiSize) {
         this.hanoiSize = hanoiSize;
+    }
+    
+    public boolean isHanoiForeground() {
+        return hanoiForeground;
+    }
+
+    public void setHanoiForeground(boolean hanoiForeground) {
+        this.hanoiForeground = hanoiForeground;
     }
     
     public LoadType getLoadType() {

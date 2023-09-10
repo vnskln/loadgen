@@ -7,17 +7,19 @@ import com.pb.loadgen.loadcontrollers.HanoiLoadController;
 import com.pb.loadgen.loadcontrollers.LoadController;
 import com.pb.loadgen.loadcontrollers.MemLoadController;
 import java.io.IOException;
-import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Slf4j
@@ -26,9 +28,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @ComponentScan
 public class HomeController {
 
-    LoadController loadController;
+    HashMap<String, LoadController> load = new HashMap<String, LoadController>();
     @Autowired
     DockerSpy dockerSpy;
+    @Autowired
+    ThreadSpy threadSpy;
     String containerName;
     
     @ModelAttribute
@@ -61,6 +65,7 @@ public class HomeController {
         loadInput.setMemoryLoadSizeMiBChangeStep(1);
         loadInput.setMemoryLoadChangeFrequencyS(1);
         loadInput.setHanoiSize(1);
+        loadInput.setHanoiForeground(false);
         log.info("Front - load details");
         return "load_details";
     }
@@ -72,19 +77,22 @@ public class HomeController {
             log.info("Found container name: " + containerName);
         }
         model.addAttribute("containerName", containerName);
+        String uniqueID = UUID.randomUUID().toString();
+        loadInput.setUniqueID(uniqueID);
         if (loadInput.getLoadType() == LoadType.MEM_STUBBORN_HOARDER || loadInput.getLoadType() == LoadType.MEM_INDECISIVE_HOARDER) {
             log.info("Front - preparing memory load");
-            loadController = new MemLoadController(loadInput);
+            load.put(uniqueID, new MemLoadController(loadInput));
         } else if (loadInput.getLoadType() == LoadType.CPU_STUBBORN_SALESMAN || loadInput.getLoadType() == LoadType.CPU_INDECISIVE_SALESMAN){
             log.info("Front - preparing CPU load");
-            loadController = new CpuLoadController(loadInput);
+            load.put(uniqueID, new CpuLoadController(loadInput));
         } else {
             log.info("Front - preparing hanoi load");
-            loadController = new HanoiLoadController(loadInput);
+            load.put(uniqueID, new HanoiLoadController(loadInput));
         }
-        loadController.generate();
-        model.addAttribute("elapsedTime", loadController.getElapsedTime());
-        if (loadInput.getLoadType() == LoadType.HANOI_RESOLVER) {
+        log.info("Load " + uniqueID + " created");
+        load.get(uniqueID).generate();
+        if (loadInput.getLoadType() == LoadType.HANOI_RESOLVER && loadInput.isHanoiForeground()) {
+            model.addAttribute("elapsedTime", load.get(uniqueID).getElapsedTime());
             log.info("Front - hanoi load stop");
             return "stop";
         } else
@@ -92,9 +100,28 @@ public class HomeController {
     }
 
     @GetMapping("/stop")
-    public String stop () {
-        log.info("Front - load generator stop");
-        loadController.stopGenerating();
+    public String stop (@ModelAttribute LoadInput loadInput, Model model) {
+        log.info("Front - load generator stop:" + loadInput.getUniqueID());
+        load.get(loadInput.getUniqueID()).stopGenerating();
+        load.remove(loadInput.getUniqueID());
         return "stop";
+    }
+    
+    @GetMapping("/summary")
+    public String summary (Model model) {
+        log.info("Front - load summary");
+        model.addAttribute("loadSummary", load);
+        model.addAttribute("threadsRunning", threadSpy.getThreads());
+        model.addAttribute("threadsCount", threadSpy.countThreads());
+        return "summary";
+    }
+    
+    @PostMapping("/delete")
+    public String deleteLoad (@RequestParam String deleteid, Model model){
+        log.info("Front - delete for " + deleteid);
+        load.get(deleteid).stopGenerating();
+        load.remove(deleteid);
+        model.addAttribute("deleteid", deleteid);
+        return "delete";
     }
 }

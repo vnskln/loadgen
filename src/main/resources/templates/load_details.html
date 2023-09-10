@@ -39,16 +39,16 @@
                             <input class="form-control" type="number" min="1" max="60" th:field="*{loadPercentageChangeFrequencyS}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_STUBBORN_HOARDER}">
-                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MB</p>
-                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MB</p>
-                            <p>Java used heap: <span th:text="${usedHeap}">maxHeap</span> MB</p>
-                            <label for="loadPicker">Memory load in megabytes:</label>
+                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MiB</p>
+                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MiB</p>
+                            <p>Java used heap: <span th:text="${usedHeap}">maxHeap</span> MiB</p>
+                            <label for="loadPicker">Memory load in mebibytes:</label>
                             <input class="form-control" type="number" min="0" th:field="*{memoryLoadSizeMiB}"/>
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).MEM_INDECISIVE_HOARDER}">
-                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MB</p>
-                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MB</p>
-                            <p>Java used heap: <span th:text="${usedHeap}">maxHeap</span> MB</p>
+                            <p>Java init heap: <span th:text="${initHeap}">initHeap</span> MiB</p>
+                            <p>Java max heap: <span th:text="${maxHeap}">maxHeap</span> MiB</p>
+                            <p>Java used heap: <span th:text="${usedHeap}">maxHeap</span> MiB</p>
                             <label for="loadPicker">Memory load - lower threshold [MiB]:</label>
                             <input class="form-control" type="number" min="0" th:field="*{memoryLoadSizeMiB}"/>
                             <label for="loadPicker">Memory load - high threshold [MiB]:</label>
@@ -60,8 +60,12 @@
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).HANOI_RESOLVER}">
                             <label>Number of discs in hanoi tower:</label>
-                            <input class="form-control" type="number" min="1" max="24" th:field="*{hanoiSize}"/>
-                        </div>
+                            <input class="form-control" type="number" min="1" max="30" th:field="*{hanoiSize}"/>
+                            <div class="form-check">
+                                <input class="form-check-input" id="hanoiBack" type="checkbox" th:checked="*{hanoiForeground}" th:field="${loadInput.hanoiForeground}"/>
+                                <label class="form-check-label" for="hanoiBack">Run in foreground</label>
+                            </div> 
+                         </div>
                         <button class="btn btn-info">Start</button>
                         <button class="btn btn-danger" th:formaction="@{/}">Back</button>
                     </form>

@@ -12,8 +12,6 @@ public abstract class Salesman implements Runnable{
         this.loadPercentage = percentage;
     }
 
-    public abstract void run();
-
     public void doStop() {
         try {
             Thread.sleep(100L);
@@ -21,6 +19,6 @@ public abstract class Salesman implements Runnable{
             e.printStackTrace();
         }
         this.keepRunning = false;
-        log.info("Finising load cycle");
+        log.info("Finishing load cycle");
     }
 }
