@@ -13,15 +13,14 @@ public class HanoiLoadController implements LoadController {
     private String uniqueID;
     private Thread worker;
     private boolean inForeground;
-    private HashMap<String, LoadController> load;
+    private boolean finished;
     private long elapsedTime = 0;
     
-    public HanoiLoadController (LoadInput loadInput, HashMap<String, LoadController> load) {
+    public HanoiLoadController (LoadInput loadInput) {
         this.hanoiSize = loadInput.getHanoiSize();
         this.hanoiResolver = new HanoiResolver(hanoiSize, this);
         this.uniqueID = loadInput.getUniqueID();
         this.inForeground = loadInput.isHanoiForeground();
-        this.load = load;
     }
     
     @Override
@@ -48,13 +47,13 @@ public class HanoiLoadController implements LoadController {
     }
     
     public void generatorFinished () {
-        load.remove(uniqueID);
+        this.finished = true;
         log.info("Hanoi load generator finished operations");
     }
     
     @Override
     public String getDetails() {
-        String details = "HANOI_RESOLVER, size: " + hanoiSize;
+        String details = "HANOI_RESOLVER, size " + hanoiSize + ", finished " + finished;
         return details;
     }
 

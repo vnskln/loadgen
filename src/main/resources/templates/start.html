@@ -18,7 +18,7 @@
                 <div class="col col-sm-4">
                     <p>Load generator started</p>
                     <form method="GET" th:action="@{/stop}">
-                        <button class="btn btn-info">Stop</button>
+                        <button class="btn btn-info" th:if="${loadInput.loadType} != ${T(com.pb.loadgen.domains.LoadType).HANOI_RESOLVER}">Stop</button>
                     </form>
                     <p></p>
                     <form method="GET" th:action="@{/}">

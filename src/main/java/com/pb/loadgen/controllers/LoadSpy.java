@@ -1,5 +1,6 @@
 package com.pb.loadgen.controllers;
 
+import com.pb.loadgen.loadcontrollers.LoadController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -8,7 +9,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class ThreadSpy {
+public class LoadSpy {
+    
+    HashMap<String, LoadController> load = new HashMap<String, LoadController>();
+
+    public HashMap<String, LoadController> getLoad() {
+        return load;
+    }
+
+    public void setLoad(HashMap<String, LoadController> load) {
+        this.load = load;
+    }
     
     protected ArrayList<String> getThreads () {
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
@@ -28,6 +39,12 @@ public class ThreadSpy {
             String threadUnique = thread.split("//")[1];
             threadCount.putIfAbsent(threadUnique, 0);
             threadCount.put(threadUnique, threadCount.get(threadUnique)+1);
+        }
+        for (String uniqueID : load.keySet()) {
+            if (threadCount.get(uniqueID) == null) {
+                log.info("Load without thread! Removing " + uniqueID);
+                load.remove(uniqueID);
+            }
         }
         return threadCount;
     }    
