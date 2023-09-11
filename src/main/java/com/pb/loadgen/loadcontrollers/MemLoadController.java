@@ -4,18 +4,13 @@ import com.pb.loadgen.controllers.DockerSpy;
 import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.Hoarder;
 import com.pb.loadgen.loadgenerators.IndecisiveHoarder;
-import com.pb.loadgen.loadgenerators.Salesman;
-import com.pb.loadgen.loadgenerators.StubbornSalesman;
-import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
 import com.pb.loadgen.loadgenerators.StubbornHoarder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 
 @Slf4j
 public class MemLoadController implements LoadController {
 
-    private LoadInput loadInput;
+    private final LoadInput loadInput;
     private Hoarder hoarder;
     private Thread worker;
     private DockerSpy dockerSpy;

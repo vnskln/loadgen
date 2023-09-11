@@ -26,16 +26,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class HomeController {
 
     @Autowired
-    DockerSpy dockerSpy;
+    private DockerSpy dockerSpy;
     @Autowired
-    LoadSpy loadSpy;
-    String containerName;
+    private LoadSpy loadSpy;
+    private String containerName;
     
     @ModelAttribute
     public LoadInput loadInput () {
         return new LoadInput();
     }
-
 
     @RequestMapping("/")
     public String home (@ModelAttribute LoadInput loadInput, Model model) {

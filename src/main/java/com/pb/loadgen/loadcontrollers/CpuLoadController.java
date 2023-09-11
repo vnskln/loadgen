@@ -4,15 +4,14 @@ import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.Salesman;
 import com.pb.loadgen.loadgenerators.StubbornSalesman;
 import com.pb.loadgen.loadgenerators.IndecisiveSalesman;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CpuLoadController implements LoadController {
 
-    private LoadInput loadInput;
+    private final LoadInput loadInput;
     private Salesman salesman;
-    private Thread [] workers;
+    private final Thread [] workers;
     private long startTime = 0;
     private long stopTime = 0;
     private long elapsedTime = 0;

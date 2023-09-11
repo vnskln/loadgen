@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group" th:if="${loadInput.loadType} == ${T(com.pb.loadgen.domains.LoadType).HANOI_RESOLVER}">
                             <label>Number of discs in hanoi tower:</label>
-                            <input class="form-control" type="number" min="1" max="30" th:field="*{hanoiSize}"/>
+                            <input class="form-control" type="number" min="1" max="100" th:field="*{hanoiSize}"/>
                             <div class="form-check">
                                 <input class="form-check-input" id="hanoiBack" type="checkbox" th:checked="*{hanoiForeground}" th:field="${loadInput.hanoiForeground}"/>
                                 <label class="form-check-label" for="hanoiBack">Run in foreground</label>

@@ -1,7 +1,6 @@
 package com.pb.loadgen.controllers;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
@@ -13,9 +12,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class DockerSpy {
     
-    private boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    private MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
-    private Runtime runtime = Runtime.getRuntime();
+    private final boolean isThisWindows  = System.getProperty("os.name").toLowerCase().startsWith("windows");
+    private final MemoryMXBean memBean = ManagementFactory.getMemoryMXBean();
+    private final Runtime runtime = Runtime.getRuntime();
     
     protected String getContainerName () throws InterruptedException, IOException {
         

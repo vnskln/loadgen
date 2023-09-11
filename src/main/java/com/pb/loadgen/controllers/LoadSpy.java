@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoadSpy {
     
-    HashMap<String, LoadController> load = new HashMap<String, LoadController>();
+    private HashMap<String, LoadController> load = new HashMap<>();
 
     public HashMap<String, LoadController> getLoad() {
         return load;
@@ -23,7 +23,7 @@ public class LoadSpy {
     
     protected ArrayList<String> getThreads () {
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-        ArrayList<String> threads = new ArrayList<String>(); 
+        ArrayList<String> threads = new ArrayList<>(); 
         for(Thread thread : threadSet) {
             if(thread.getName().startsWith("loadgt")){
                 threads.add(thread.getName());
@@ -33,18 +33,14 @@ public class LoadSpy {
     }
     
     protected HashMap<String,Integer> countThreads () {
-        HashMap<String,Integer> threadCount = new HashMap<String,Integer>(); 
+        HashMap<String,Integer> threadCount = new HashMap<>(); 
+        log.info("Getting threads list");
         ArrayList<String> threads = this.getThreads();
+        log.info("Counting threads");
         for (String thread : threads) {
             String threadUnique = thread.split("//")[1];
             threadCount.putIfAbsent(threadUnique, 0);
             threadCount.put(threadUnique, threadCount.get(threadUnique)+1);
-        }
-        for (String uniqueID : load.keySet()) {
-            if (threadCount.get(uniqueID) == null) {
-                log.info("Load without thread! Removing " + uniqueID);
-                load.remove(uniqueID);
-            }
         }
         return threadCount;
     }    

@@ -2,17 +2,16 @@ package com.pb.loadgen.loadcontrollers;
 
 import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.HanoiResolver;
-import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class HanoiLoadController implements LoadController {
 
     private HanoiResolver hanoiResolver;
-    private int hanoiSize;
-    private String uniqueID;
+    private final int hanoiSize;
+    private final String uniqueID;
     private Thread worker;
-    private boolean inForeground;
+    private final boolean inForeground;
     private boolean finished;
     private long elapsedTime = 0;
     
@@ -42,13 +41,13 @@ public class HanoiLoadController implements LoadController {
         }
     }
     
-    public long getElapsedTime () {
-        return elapsedTime;
-    }
-    
     public void generatorFinished () {
         this.finished = true;
         log.info("Hanoi load generator finished operations");
+    }
+    
+    public long getElapsedTime () {
+        return elapsedTime;
     }
     
     @Override

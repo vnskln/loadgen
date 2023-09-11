@@ -16,16 +16,17 @@ public class HanoiResolver implements Runnable {
     }
     
     private void hanoiTower (int n, String source, String dest, String helper) {
-        log.info("Started hanoi for n = " + n);
+        log.debug("Started hanoi for n = " + n);
         if (n == 1) {
-            log.info("Take disk 1 from " + source + " to " + dest);
+            log.debug("Take disk 1 from " + source + " to " + dest);
             return;
         }
         hanoiTower(n-1, source, helper, dest);
-        log.info("Take disk " + n + " from " + source + " to " + dest);
+        log.debug("Take disk " + n + " from " + source + " to " + dest);
         hanoiTower(n-1, helper, dest, source);
     }
 
+    @Override
     public void run() {
         hanoiTower(discNumber, "A", "C", "B");
         hanoiLoadController.generatorFinished();
