@@ -29,9 +29,6 @@ public class ThreadSpy {
             threadCount.putIfAbsent(threadUnique, 0);
             threadCount.put(threadUnique, threadCount.get(threadUnique)+1);
         }
-        for (HashMap.Entry<String, Integer> entry : threadCount.entrySet()) {
-            log.info(entry.getKey() + ": " + entry.getValue());
-        }
         return threadCount;
     }    
 }

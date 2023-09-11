@@ -8,7 +8,6 @@ import com.pb.loadgen.loadcontrollers.LoadController;
 import com.pb.loadgen.loadcontrollers.MemLoadController;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +86,7 @@ public class HomeController {
             load.put(uniqueID, new CpuLoadController(loadInput));
         } else {
             log.info("Front - preparing hanoi load");
-            load.put(uniqueID, new HanoiLoadController(loadInput));
+            load.put(uniqueID, new HanoiLoadController(loadInput, load));
         }
         log.info("Load " + uniqueID + " created");
         load.get(uniqueID).generate();

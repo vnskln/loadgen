@@ -2,6 +2,7 @@ package com.pb.loadgen.loadcontrollers;
 
 import com.pb.loadgen.domains.LoadInput;
 import com.pb.loadgen.loadgenerators.HanoiResolver;
+import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -12,13 +13,15 @@ public class HanoiLoadController implements LoadController {
     private String uniqueID;
     private Thread worker;
     private boolean inForeground;
+    private HashMap<String, LoadController> load;
     private long elapsedTime = 0;
     
-    public HanoiLoadController (LoadInput loadInput) {
+    public HanoiLoadController (LoadInput loadInput, HashMap<String, LoadController> load) {
         this.hanoiSize = loadInput.getHanoiSize();
-        this.hanoiResolver = new HanoiResolver(loadInput.getHanoiSize());
+        this.hanoiResolver = new HanoiResolver(hanoiSize, this);
         this.uniqueID = loadInput.getUniqueID();
         this.inForeground = loadInput.isHanoiForeground();
+        this.load = load;
     }
     
     @Override
@@ -42,6 +45,11 @@ public class HanoiLoadController implements LoadController {
     
     public long getElapsedTime () {
         return elapsedTime;
+    }
+    
+    public void generatorFinished () {
+        load.remove(uniqueID);
+        log.info("Hanoi load generator finished operations");
     }
     
     @Override
