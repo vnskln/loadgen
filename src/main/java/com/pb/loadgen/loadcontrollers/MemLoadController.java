@@ -1,3 +1,7 @@
+//! Memory load controller
+/*!
+  Class for creating and controlling memory load
+*/
 package com.pb.loadgen.loadcontrollers;
 
 import com.pb.loadgen.controllers.DockerSpy;
@@ -10,18 +14,35 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MemLoadController implements LoadController {
 
+    //! LoadInput class instance
+    /*!
+      Gathering load parameters given by user
+    */
     private final LoadInput loadInput;
+    //! Memory load generator instance
     private Hoarder hoarder;
+    //! Memory load generator thread
     private Thread worker;
+    //! DockerSpy instance for gathering informations
     private DockerSpy dockerSpy;
+    //! Time counter variable
     private long startTime = 0;
+    //! Time counter variable
     private long stopTime = 0;
+    //! Time counter variable
     private long elapsedTime = 0;
 
+    //! Constructor
     public MemLoadController(LoadInput loadInput) {
         this.loadInput = loadInput;
     }
 
+    //! Start generator
+    /*!
+      1) Choose memory load generator implementation
+      2) Prepare and start thread with load generator
+      3) Count operation time
+    */
     @Override
     public void generate() {
         try {
@@ -46,6 +67,7 @@ public class MemLoadController implements LoadController {
         }
     }
 
+    //! Stop generator
     @Override
     public void stopGenerating() {
         try {
@@ -59,6 +81,7 @@ public class MemLoadController implements LoadController {
         log.info("Memory load generator stopped: " + loadInput.getUniqueID());
     }
     
+    //! Get load details
     @Override
     public String getDetails() {
         String details = loadInput.getLoadType().toString() + ", " + loadInput.getMemoryLoadSizeMiB();
@@ -70,6 +93,7 @@ public class MemLoadController implements LoadController {
         return details;
     }
     
+    //! Get load generation elapsed time 
     @Override
     public long getElapsedTime() {
         return elapsedTime;

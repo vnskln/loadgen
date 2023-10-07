@@ -1,3 +1,4 @@
+//! Class for storing load informations
 package com.pb.loadgen.controllers;
 
 import com.pb.loadgen.loadcontrollers.LoadController;
@@ -11,16 +12,20 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoadSpy {
     
+    //! Map for load storage
     private HashMap<String, LoadController> load = new HashMap<>();
 
+    //! Load map getter
     public HashMap<String, LoadController> getLoad() {
         return load;
     }
 
+    //! Load map setter
     public void setLoad(HashMap<String, LoadController> load) {
         this.load = load;
     }
     
+    //! Get list of threads running in jvm
     protected ArrayList<String> getThreads () {
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         ArrayList<String> threads = new ArrayList<>(); 
@@ -32,6 +37,7 @@ public class LoadSpy {
         return threads;
     }
     
+    //! Count threads for each load
     protected HashMap<String,Integer> countThreads () {
         HashMap<String,Integer> threadCount = new HashMap<>(); 
         log.info("Getting threads list");

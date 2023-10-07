@@ -1,0 +1,97 @@
+\doxysection{com.\+pb.\+loadgen.\+controllers.\+Home\+Controller Class Reference}
+\hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller}{}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller}\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Load\+Input \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}{load\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Load\+Input generator. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a1786e68b18eb28ee4c513d441c0639f3}{home}} (@Model\+Attribute Load\+Input \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}{load\+Input}}, Model model)
+\begin{DoxyCompactList}\small\item\em Root endpoint -\/ application homepage. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab6971b7afef410210d3964626893232f}{load\+Details}} (@Model\+Attribute Load\+Input \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}{load\+Input}}, Model model)
+\begin{DoxyCompactList}\small\item\em User sets load parameters. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7813fa8accb9bed570013aa92bb583f7}{start}} (@Model\+Attribute Load\+Input \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}{load\+Input}}, Model model)  throws Interrupted\+Exception, IOException 
+\begin{DoxyCompactList}\small\item\em Start load generator. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_aa55b98b0fdf3d2abfc05c33b57a95215}{stop}} (@Model\+Attribute Load\+Input \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}{load\+Input}}, Model model)
+\begin{DoxyCompactList}\small\item\em Stop load generator and remove load from Load\+Spy map. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7d2fb67313c2652cafda1f6159ffd514}{summary}} (Model model)
+\begin{DoxyCompactList}\small\item\em Summary page of running load. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a28dbaf635986e9cbd39434760cc489ab}{delete\+Load}} (@Request\+Param String deleteid, Model model)
+\begin{DoxyCompactList}\small\item\em Delete running load and remove load from Load\+Spy map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a28dbaf635986e9cbd39434760cc489ab}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a28dbaf635986e9cbd39434760cc489ab} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!deleteLoad@{deleteLoad}}
+\index{deleteLoad@{deleteLoad}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{deleteLoad()}{deleteLoad()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+delete\+Load (\begin{DoxyParamCaption}\item[{@Request\+Param String}]{deleteid,  }\item[{Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Delete running load and remove load from Load\+Spy map. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a1786e68b18eb28ee4c513d441c0639f3}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a1786e68b18eb28ee4c513d441c0639f3} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!home@{home}}
+\index{home@{home}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{home()}{home()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+home (\begin{DoxyParamCaption}\item[{@Model\+Attribute Load\+Input}]{load\+Input,  }\item[{Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Root endpoint -\/ application homepage. 
+
+1) Add Load\+Input to Model 2) User chooses load type \Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab6971b7afef410210d3964626893232f}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab6971b7afef410210d3964626893232f} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!loadDetails@{loadDetails}}
+\index{loadDetails@{loadDetails}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{loadDetails()}{loadDetails()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+load\+Details (\begin{DoxyParamCaption}\item[{@Model\+Attribute Load\+Input}]{load\+Input,  }\item[{Model}]{model }\end{DoxyParamCaption})}
+
+
+
+User sets load parameters. 
+
+1) Add informations from Docker Spy to model 2) Set initial parameters values 3) Show informations to user \Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_ab9f2f17a4245b3e5539530f5d82d7ca4} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!loadInput@{loadInput}}
+\index{loadInput@{loadInput}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{loadInput()}{loadInput()}}
+{\footnotesize\ttfamily Load\+Input com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+load\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Load\+Input generator. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7813fa8accb9bed570013aa92bb583f7}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7813fa8accb9bed570013aa92bb583f7} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!start@{start}}
+\index{start@{start}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+start (\begin{DoxyParamCaption}\item[{@Model\+Attribute Load\+Input}]{load\+Input,  }\item[{Model}]{model }\end{DoxyParamCaption}) throws Interrupted\+Exception, IOException}
+
+
+
+Start load generator. 
+
+1) Add informations from Docker Spy to model 2) Prepare and start load controller for load type chosen by user 3) Add load to Load Spy map \Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_aa55b98b0fdf3d2abfc05c33b57a95215}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_aa55b98b0fdf3d2abfc05c33b57a95215} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!stop@{stop}}
+\index{stop@{stop}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+stop (\begin{DoxyParamCaption}\item[{@Model\+Attribute Load\+Input}]{load\+Input,  }\item[{Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Stop load generator and remove load from Load\+Spy map. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7d2fb67313c2652cafda1f6159ffd514}\label{classcom_1_1pb_1_1loadgen_1_1controllers_1_1_home_controller_a7d2fb67313c2652cafda1f6159ffd514} 
+\index{com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}!summary@{summary}}
+\index{summary@{summary}!com.pb.loadgen.controllers.HomeController@{com.pb.loadgen.controllers.HomeController}}
+\doxysubsubsection{\texorpdfstring{summary()}{summary()}}
+{\footnotesize\ttfamily String com.\+pb.\+loadgen.\+controllers.\+Home\+Controller.\+summary (\begin{DoxyParamCaption}\item[{Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Summary page of running load. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/pb/loadgen/controllers/\mbox{\hyperlink{_home_controller_8java}{Home\+Controller.\+java}}\end{DoxyCompactItemize}

@@ -1,3 +1,4 @@
+//! Load controller interface
 package com.pb.loadgen.loadcontrollers;
 
 public interface LoadController {

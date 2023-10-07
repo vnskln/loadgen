@@ -1,3 +1,4 @@
+//! Default implementation of springboot application class
 package com.pb.loadgen;
 
 import org.springframework.boot.SpringApplication;

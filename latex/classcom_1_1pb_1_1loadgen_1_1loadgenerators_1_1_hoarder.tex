@@ -1,0 +1,131 @@
+\doxysection{com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder Class Reference}
+\hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder}{}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder}\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+Inheritance diagram for com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.736156cm]{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a5b1e1c6c9a859238443a057eb13ab856}{Hoarder}} (int \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1289c98ce8ace92783b5a0b0571aad8d}{memory\+Load\+Size\+MiB}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+abstract void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a67e70811996803c0443803ee2aaff0a3}{run}} ()
+\begin{DoxyCompactList}\small\item\em Abstract run method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_af0408108508cf1614f1662b3b8203340}{do\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Method for stopping load generator running in thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a88ddc3c10d03e917c60cb5d818956c0f}{clear\+Load\+Array}} ()
+\begin{DoxyCompactList}\small\item\em Clear all objects in load array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a6b747cd865d91caab104e7157db49d9f}{randomize\+Load\+Array}} ()
+\begin{DoxyCompactList}\small\item\em Put random bytes in load array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+volatile boolean \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a188f638249a79c942284090531c1cb5a}{keep\+Running}} = true
+\begin{DoxyCompactList}\small\item\em Thread stop parameter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1289c98ce8ace92783b5a0b0571aad8d}{memory\+Load\+Size\+MiB}}
+\begin{DoxyCompactList}\small\item\em Load parameter -\/ used memory size in MiB. \end{DoxyCompactList}\item 
+Docker\+Spy \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1b8d9ca8f243aa5f035d091f0a37851a}{docker\+Spy}} = new Docker\+Spy()
+\begin{DoxyCompactList}\small\item\em Docker\+Spy instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a5b1e1c6c9a859238443a057eb13ab856}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a5b1e1c6c9a859238443a057eb13ab856} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!Hoarder@{Hoarder}}
+\index{Hoarder@{Hoarder}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{Hoarder()}{Hoarder()}}
+{\footnotesize\ttfamily com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+Hoarder (\begin{DoxyParamCaption}\item[{int}]{memory\+Load\+Size\+MiB }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a88ddc3c10d03e917c60cb5d818956c0f}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a88ddc3c10d03e917c60cb5d818956c0f} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!clearLoadArray@{clearLoadArray}}
+\index{clearLoadArray@{clearLoadArray}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{clearLoadArray()}{clearLoadArray()}}
+{\footnotesize\ttfamily void com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+clear\+Load\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Clear all objects in load array. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_af0408108508cf1614f1662b3b8203340}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_af0408108508cf1614f1662b3b8203340} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!doStop@{doStop}}
+\index{doStop@{doStop}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{doStop()}{doStop()}}
+{\footnotesize\ttfamily void com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+do\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method for stopping load generator running in thread. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a6b747cd865d91caab104e7157db49d9f}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a6b747cd865d91caab104e7157db49d9f} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!randomizeLoadArray@{randomizeLoadArray}}
+\index{randomizeLoadArray@{randomizeLoadArray}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{randomizeLoadArray()}{randomizeLoadArray()}}
+{\footnotesize\ttfamily void com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+randomize\+Load\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Put random bytes in load array. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a67e70811996803c0443803ee2aaff0a3}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a67e70811996803c0443803ee2aaff0a3} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!run@{run}}
+\index{run@{run}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily abstract void com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+
+
+Abstract run method. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_indecisive_hoarder_ac68099f114f4bca1fdc0f122fdb13943}{com.\+pb.\+loadgen.\+loadgenerators.\+Indecisive\+Hoarder}}, and \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_hoarder_afe4a2719abf1b1c5f7bb55160407cf5e}{com.\+pb.\+loadgen.\+loadgenerators.\+Stubborn\+Hoarder}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1b8d9ca8f243aa5f035d091f0a37851a}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1b8d9ca8f243aa5f035d091f0a37851a} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!dockerSpy@{dockerSpy}}
+\index{dockerSpy@{dockerSpy}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{dockerSpy}{dockerSpy}}
+{\footnotesize\ttfamily Docker\+Spy com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+docker\+Spy = new Docker\+Spy()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Docker\+Spy instance. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a188f638249a79c942284090531c1cb5a}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a188f638249a79c942284090531c1cb5a} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!keepRunning@{keepRunning}}
+\index{keepRunning@{keepRunning}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{keepRunning}{keepRunning}}
+{\footnotesize\ttfamily volatile boolean com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+keep\+Running = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Thread stop parameter. 
+
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1289c98ce8ace92783b5a0b0571aad8d}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_hoarder_a1289c98ce8ace92783b5a0b0571aad8d} 
+\index{com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}!memoryLoadSizeMiB@{memoryLoadSizeMiB}}
+\index{memoryLoadSizeMiB@{memoryLoadSizeMiB}!com.pb.loadgen.loadgenerators.Hoarder@{com.pb.loadgen.loadgenerators.Hoarder}}
+\doxysubsubsection{\texorpdfstring{memoryLoadSizeMiB}{memoryLoadSizeMiB}}
+{\footnotesize\ttfamily int com.\+pb.\+loadgen.\+loadgenerators.\+Hoarder.\+memory\+Load\+Size\+MiB\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Load parameter -\/ used memory size in MiB. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/pb/loadgen/loadgenerators/\mbox{\hyperlink{_hoarder_8java}{Hoarder.\+java}}\end{DoxyCompactItemize}

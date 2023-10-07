@@ -1,3 +1,4 @@
+//! Implementation of indecisive memory load generator
 package com.pb.loadgen.loadgenerators;
 
 import lombok.extern.slf4j.Slf4j;
@@ -5,10 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IndecisiveHoarder extends Hoarder {
 
+    //! Load parameter - max load array size
     public int memoryLoadSizeMiBHigh;
+    //! Load parameter - load array change step
     public int memoryLoadSizeMiBChangeStep;
+    //! Load parameter - load array change frequency
     public int memoryLoadChangeFrequencyS;
 
+    //! Constructor
     public IndecisiveHoarder(int memoryLoadSizeMiB, int memoryLoadSizeMiBHigh, int memoryLoadSizeMiBChangeStep, int memoryLoadChangeFrequencyS) {
         super(Math.min(memoryLoadSizeMiB,memoryLoadSizeMiBHigh));
         this.memoryLoadSizeMiBHigh = Math.max(memoryLoadSizeMiB, memoryLoadSizeMiBHigh);
@@ -16,6 +21,12 @@ public class IndecisiveHoarder extends Hoarder {
         this.memoryLoadChangeFrequencyS = memoryLoadChangeFrequencyS;
     }
 
+    //! Run generator in thread
+    /*!
+      1) Gather jvm memory parameters
+      2) Create random input for memory load array
+      3) Change size of load array
+    */
     @Override
     public void run() {
         int currentLoadSizeMiB = memoryLoadSizeMiB;

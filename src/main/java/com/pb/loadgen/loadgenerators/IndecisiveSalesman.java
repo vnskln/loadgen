@@ -1,3 +1,4 @@
+//! Implementation of changeable CPU load generator
 package com.pb.loadgen.loadgenerators;
 
 import lombok.extern.slf4j.Slf4j;
@@ -5,10 +6,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IndecisiveSalesman extends Salesman {
 
+    //! Load parameter - CPU load change step
     public int loadPercentageChangeStep;
+    //! Load parameter - CPU load change frequency
     public int loadPercentageChangeFrequencyS;
+    //! Load parameter - max CPU load
     public int loadPercentageHigh;
 
+    //! Constructor
     public IndecisiveSalesman (int loadPercentage, int loadPercentageHigh, int loadPercentageChangeStep, int loadPercentageChangeFrequencyS) {
         super (Math.min(loadPercentage,loadPercentageHigh));
         this.loadPercentageHigh = Math.max(loadPercentage, loadPercentageHigh);
@@ -16,6 +21,12 @@ public class IndecisiveSalesman extends Salesman {
         this.loadPercentageChangeFrequencyS=loadPercentageChangeFrequencyS;
     }
 
+    //! Run generator in thread
+    /*!
+      1) Creating X% of cpu load is done by creating loop working for X% of time, 
+      and sleeping for 100%-X% of time
+      2) Load value change is based on users' parameters
+    */
     @Override
     public void run() {
         long startTime = System.currentTimeMillis();

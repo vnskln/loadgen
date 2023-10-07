@@ -1,3 +1,7 @@
+//! Endpoints controller
+/*!
+  Class connecting http endpoints with thymeleaf views and application logic
+*/
 package com.pb.loadgen.controllers;
 
 import com.pb.loadgen.domains.LoadInput;
@@ -25,17 +29,32 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @ComponentScan
 public class HomeController {
 
+    //! DockerSpy class instance
+    /*!
+      Gathering informations about application running in container
+    */
     @Autowired
     private DockerSpy dockerSpy;
+    //! LoadSpy class instance
+    /*!
+      Gathering informations about load running in application
+    */
     @Autowired
     private LoadSpy loadSpy;
+    //! Variable for storing name of the app container
     private String containerName;
     
+    //! LoadInput generator
     @ModelAttribute
     public LoadInput loadInput () {
         return new LoadInput();
     }
 
+    //! Root endpoint - application homepage
+    /*!
+      1) Add LoadInput to Model
+      2) User chooses load type
+    */
     @RequestMapping("/")
     public String home (@ModelAttribute LoadInput loadInput, Model model) {
         model.addAttribute(new LoadInput());
@@ -43,6 +62,12 @@ public class HomeController {
         return "home";
     }
     
+    //! User sets load parameters
+    /*!
+      1) Add informations from Docker Spy to model
+      2) Set initial parameters values
+      3) Show informations to user
+    */
     @PostMapping("/loadDetails")
     public String loadDetails (@ModelAttribute LoadInput loadInput, Model model) {
         model.addAttribute("initHeap",dockerSpy.getInitHeapMemory());
@@ -62,6 +87,12 @@ public class HomeController {
         return "load_details";
     }
 
+    //! Start load generator
+    /*!
+      1) Add informations from Docker Spy to model
+      2) Prepare and start load controller for load type chosen by user
+      3) Add load to Load Spy map
+    */
     @PostMapping("/start")
     public String start (@ModelAttribute LoadInput loadInput, Model model) throws InterruptedException, IOException {
         if (containerName == null) {
@@ -91,6 +122,7 @@ public class HomeController {
         return "start";
     }
 
+    //! Stop load generator and remove load from LoadSpy map
     @GetMapping("/stop")
     public String stop (@ModelAttribute LoadInput loadInput, Model model) {
         log.info("Front - load generator stop:" + loadInput.getUniqueID());
@@ -99,6 +131,7 @@ public class HomeController {
         return "stop";
     }
     
+    //! Summary page of running load
     @GetMapping("/summary")
     public String summary (Model model) {
         log.info("Front - load summary");
@@ -108,6 +141,7 @@ public class HomeController {
         return "summary";
     }
     
+    //! Delete running load and remove load from LoadSpy map
     @PostMapping("/delete")
     public String deleteLoad (@RequestParam String deleteid, Model model){
         log.info("Front - delete for " + deleteid);

@@ -1,0 +1,61 @@
+\doxysection{com.\+pb.\+loadgen.\+loadgenerators.\+Stubborn\+Salesman Class Reference}
+\hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman}{}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman}\index{com.pb.loadgen.loadgenerators.StubbornSalesman@{com.pb.loadgen.loadgenerators.StubbornSalesman}}
+Inheritance diagram for com.\+pb.\+loadgen.\+loadgenerators.\+Stubborn\+Salesman\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_aa8f8993d923083a8f2f880d937c9c457}{Stubborn\+Salesman}} (int \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman_aa31746884666bb83e7409a37e4f92367}{load\+Percentage}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_a87de4cd4d95861b7a59e495b020a7169}{run}} ()
+\begin{DoxyCompactList}\small\item\em Run generator in thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman}{com.\+pb.\+loadgen.\+loadgenerators.\+Salesman}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman_acd87285406fbf0c22882c18e3ec3ab68}{Salesman}} (int percentage)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman_a07afe4c879178636269851327b5ab8b6}{do\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Method for stopping load generator running in thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman}{com.\+pb.\+loadgen.\+loadgenerators.\+Salesman}}}
+\begin{DoxyCompactItemize}
+\item 
+volatile boolean \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman_ada4712091714f4015361decb0725bb23}{keep\+Running}} = true
+\begin{DoxyCompactList}\small\item\em Thread stop parameter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_salesman_aa31746884666bb83e7409a37e4f92367}{load\+Percentage}}
+\begin{DoxyCompactList}\small\item\em Load parameter -\/ CPU load percentage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_aa8f8993d923083a8f2f880d937c9c457}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_aa8f8993d923083a8f2f880d937c9c457} 
+\index{com.pb.loadgen.loadgenerators.StubbornSalesman@{com.pb.loadgen.loadgenerators.StubbornSalesman}!StubbornSalesman@{StubbornSalesman}}
+\index{StubbornSalesman@{StubbornSalesman}!com.pb.loadgen.loadgenerators.StubbornSalesman@{com.pb.loadgen.loadgenerators.StubbornSalesman}}
+\doxysubsubsection{\texorpdfstring{StubbornSalesman()}{StubbornSalesman()}}
+{\footnotesize\ttfamily com.\+pb.\+loadgen.\+loadgenerators.\+Stubborn\+Salesman.\+Stubborn\+Salesman (\begin{DoxyParamCaption}\item[{int}]{load\+Percentage }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_a87de4cd4d95861b7a59e495b020a7169}\label{classcom_1_1pb_1_1loadgen_1_1loadgenerators_1_1_stubborn_salesman_a87de4cd4d95861b7a59e495b020a7169} 
+\index{com.pb.loadgen.loadgenerators.StubbornSalesman@{com.pb.loadgen.loadgenerators.StubbornSalesman}!run@{run}}
+\index{run@{run}!com.pb.loadgen.loadgenerators.StubbornSalesman@{com.pb.loadgen.loadgenerators.StubbornSalesman}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void com.\+pb.\+loadgen.\+loadgenerators.\+Stubborn\+Salesman.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run generator in thread. 
+
+1) Creating X\% of cpu load is done by creating loop working for X\% of time, and sleeping for 100\%-\/X\% of time 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/com/pb/loadgen/loadgenerators/\mbox{\hyperlink{_stubborn_salesman_8java}{Stubborn\+Salesman.\+java}}\end{DoxyCompactItemize}
